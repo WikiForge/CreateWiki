@@ -146,7 +146,7 @@ jobs:
           fi
 
       - name: Cache docker image
-        uses: actions/cache@v3.3.0
+        uses: actions/cache@v3.3.1
         with:
           path: /home/runner/docker-images/${{ env.DOCKER_IMAGE }}
           key: ${{ env.DOCKER_IMAGE }}:${{ env.DOCKER_LATEST_TAG }}
@@ -158,7 +158,7 @@ jobs:
 
       - name: Cache quibble docker image
         if: ${{ matrix.stage == 'coverage' || matrix.stage == 'phan' }}
-        uses: actions/cache@v3.3.0
+        uses: actions/cache@v3.3.1
         with:
           path: /home/runner/docker-images/${{ env.QUIBBLE_DOCKER_IMAGE }}
           key: ${{ env.QUIBBLE_DOCKER_IMAGE }}:${{ env.QUIBBLE_DOCKER_LATEST_TAG }}
@@ -202,7 +202,7 @@ jobs:
           git -C src/ log -n 1 --format="%H"
 
       - name: Cache dependencies (composer and npm)
-        uses: actions/cache@v3.3.0
+        uses: actions/cache@v3.3.1
         with:
           path: /home/runner/cache
           key: ${{ runner.os }}-${{ env.MEDIAWIKI_VERSION }}-${{ hashFiles('**/*.lock') }}
@@ -314,26 +314,26 @@ jobs:
   notify-irc:
     needs: test
     runs-on: ubuntu-latest
-    if: ${{ always() && github.repository_owner == 'miraheze' && ( github.ref == 'refs/heads/master' || github.event_name == 'pull_request' ) }}
+    if: ${{ always() && github.repository_owner == 'WikiForge' && ( github.ref == 'refs/heads/master' || github.event_name == 'pull_request' ) }}
     steps:
       - name: succeeded
         uses: technote-space/workflow-conclusion-action@v3
       - uses: rectalogic/notify-irc@v2
         if: env.WORKFLOW_CONCLUSION == 'success'
         with:
-          channel: "#miraheze-sre"
+          channel: "#wikiforge-sre"
           server: "irc.libera.chat"
-          nickname: miraheze-github
+          nickname: wikiforge-github
           message: ${{ github.repository }} - ${{ github.actor }} the build passed.
-          sasl_password: ${{ secrets.IRC_MIRAHEZEBOTS }}
+          sasl_password: ${{ secrets.IRC_WIKIFORGEBOTS }}
 
       - name: failed
         uses: technote-space/workflow-conclusion-action@v3
       - uses: rectalogic/notify-irc@v2
         if: env.WORKFLOW_CONCLUSION == 'failure'
         with:
-          channel: "#miraheze-sre"
+          channel: "#wikiforge-sre"
           server: "irc.libera.chat"
-          nickname: miraheze-github
+          nickname: wikiforge-github
           message: ${{ github.repository }} - ${{ github.actor }} the build has errored.
-          sasl_password: ${{ secrets.IRC_MIRAHEZEBOTS }}
+          sasl_password: ${{ secrets.IRC_WIKIFORGEBOTS }}
