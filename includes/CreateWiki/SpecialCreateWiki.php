@@ -67,7 +67,7 @@ class SpecialCreateWiki extends FormSpecialPage {
 				'type' => 'select',
 				'label-message' => 'createwiki-label-category',
 				'options' => $this->config->get( 'CreateWikiCategories' ),
-				'default' => 'uncategorised',
+				'default' => 'uncategorized',
 			];
 		}
 
@@ -93,7 +93,7 @@ class SpecialCreateWiki extends FormSpecialPage {
 		if ( $this->config->get( 'CreateWikiUseCategories' ) ) {
 			$category = $formData['category'];
 		} else {
-			$category = 'uncategorised';
+			$category = 'uncategorized';
 		}
 
 		$wm = new WikiManager( $formData['dbname'], $this->hookRunner );
