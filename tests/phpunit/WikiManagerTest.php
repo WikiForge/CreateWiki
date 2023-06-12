@@ -219,7 +219,7 @@ class WikiManagerTest extends MediaWikiIntegrationTestCase {
 			[ $dbname ], $GLOBALS['wgLocalDatabases']
 		) );
 
-		return $wikiManager->create( 'TestWiki', 'en', $private, 'uncategorised', $testUser->getName(), $testSysop->getName(), 'Test' );
+		return $wikiManager->create( 'TestWiki', 'en', $private, 'uncategorized', $testUser->getName(), $testSysop->getName(), 'Test' );
 	}
 
 	/**
