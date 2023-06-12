@@ -244,7 +244,7 @@ class RemoteWikiTest extends MediaWikiIntegrationTestCase {
 	public function testSetCategory() {
 		$remoteWiki = new RemoteWiki( 'remotewikitest', $this->getMockCreateWikiHookRunner() );
 
-		$this->assertSame( 'uncategorised', $remoteWiki->getCategory() );
+		$this->assertSame( 'uncategorized', $remoteWiki->getCategory() );
 
 		$remoteWiki->setCategory( 'test' );
 		$remoteWiki->commit();
@@ -325,6 +325,6 @@ class RemoteWikiTest extends MediaWikiIntegrationTestCase {
 		$testSysop = $this->getTestSysop()->getUser();
 
 		$wikiManager = new WikiManager( $dbname, $this->getMockCreateWikiHookRunner() );
-		$wikiManager->create( 'TestWiki', 'en', 0, 'uncategorised', $testUser->getName(), $testSysop->getName(), 'Test' );
+		$wikiManager->create( 'TestWiki', 'en', 0, 'uncategorized', $testUser->getName(), $testSysop->getName(), 'Test' );
 	}
 }
