@@ -72,7 +72,7 @@ class SpecialRequestWiki extends FormSpecialPage {
 				'type' => 'select',
 				'label-message' => 'createwiki-label-category',
 				'options' => $this->config->get( 'CreateWikiCategories' ),
-				'default' => 'uncategorised',
+				'default' => 'uncategorized',
 			];
 		}
 
