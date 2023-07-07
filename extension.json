@@ -6,7 +6,7 @@
 		"Paladox",
 		"Universal Omega"
 	],
-	"url": "https://github.com/miraheze/CreateWiki",
+	"url": "https://github.com/WikiForge/CreateWiki",
 	"descriptionmsg": "createwiki-desc",
 	"license-name": "GPL-3.0-or-later",
 	"type": "specialpage",
@@ -19,28 +19,28 @@
 	],
 	"SpecialPages": {
 		"CreateWiki": {
-			"class": "Miraheze\\CreateWiki\\CreateWiki\\SpecialCreateWiki",
+			"class": "WikiForge\\CreateWiki\\CreateWiki\\SpecialCreateWiki",
 			"services": [
 				"CreateWikiHookRunner"
 			]
 		},
 		"RequestWiki": {
-			"class": "Miraheze\\CreateWiki\\RequestWiki\\SpecialRequestWiki",
+			"class": "WikiForge\\CreateWiki\\RequestWiki\\SpecialRequestWiki",
 			"services": [
 				"CreateWikiHookRunner"
 			]
 		},
 		"RequestWikiQueue": {
-			"class": "Miraheze\\CreateWiki\\RequestWiki\\SpecialRequestWikiQueue",
+			"class": "WikiForge\\CreateWiki\\RequestWiki\\SpecialRequestWikiQueue",
 			"services": [
 				"CreateWikiHookRunner"
 			]
 		}
 	},
 	"JobClasses": {
-		"CreateWikiJob": "Miraheze\\CreateWiki\\CreateWiki\\CreateWikiJob",
-		"RequestWikiAIJob": "Miraheze\\CreateWiki\\RequestWiki\\RequestWikiAIJob",
-		"SetContainersAccessJob": "Miraheze\\CreateWiki\\SetContainersAccessJob"
+		"CreateWikiJob": "WikiForge\\CreateWiki\\CreateWiki\\CreateWikiJob",
+		"RequestWikiAIJob": "WikiForge\\CreateWiki\\RequestWiki\\RequestWikiAIJob",
+		"SetContainersAccessJob": "WikiForge\\CreateWiki\\SetContainersAccessJob"
 	},
 	"LogTypes": [
 		"farmer"
@@ -68,7 +68,7 @@
 		"farmer/requestdecline": "LogFormatter",
 		"farmer/requestonhold": "LogFormatter",
 		"farmer/requestreopen": "LogFormatter",
-		"farmer/requestwiki": "Miraheze\\CreateWiki\\CreateWiki\\CreateWikiLogFormatter"
+		"farmer/requestwiki": "WikiForge\\CreateWiki\\CreateWiki\\CreateWikiLogFormatter"
 	},
 	"MessagesDirs": {
 		"CreateWiki": [
@@ -80,19 +80,19 @@
 		"CreateWikiMagic": "CreateWikiMagic.php"
 	},
 	"AutoloadNamespaces": {
-		"Miraheze\\CreateWiki\\": "includes/"
+		"WikiForge\\CreateWiki\\": "includes/"
 	},
 	"AutoloadClasses": {
-		"Miraheze\\CreateWiki\\Maintenance\\DeleteWikis": "maintenance/deleteWikis.php",
-		"Miraheze\\CreateWiki\\Maintenance\\PopulateMainPage": "maintenance/populateMainPage.php",
-		"Miraheze\\CreateWiki\\Maintenance\\RenameWiki": "maintenance/renameWiki.php"
+		"WikiForge\\CreateWiki\\Maintenance\\DeleteWikis": "maintenance/deleteWikis.php",
+		"WikiForge\\CreateWiki\\Maintenance\\PopulateMainPage": "maintenance/populateMainPage.php",
+		"WikiForge\\CreateWiki\\Maintenance\\RenameWiki": "maintenance/renameWiki.php"
 	},
 	"TestAutoloadNamespaces": {
-		"Miraheze\\CreateWiki\\Tests\\Unit\\": "tests/phpunit/unit/",
-		"Miraheze\\CreateWiki\\Tests\\": "tests/phpunit/"
+		"WikiForge\\CreateWiki\\Tests\\Unit\\": "tests/phpunit/unit/",
+		"WikiForge\\CreateWiki\\Tests\\": "tests/phpunit/"
 	},
 	"Hooks": {
-		"BeforeCreateEchoEvent": "Miraheze\\CreateWiki\\Hooks::onBeforeCreateEchoEvent",
+		"BeforeCreateEchoEvent": "WikiForge\\CreateWiki\\Hooks::onBeforeCreateEchoEvent",
 		"LoadExtensionSchemaUpdates": {
 			"handler": "Installer"
 		},
@@ -111,7 +111,7 @@
 	},
 	"HookHandlers": {
 		"default": {
-			"class": "Miraheze\\CreateWiki\\Hooks",
+			"class": "WikiForge\\CreateWiki\\Hooks",
 			"services": [
 				"MainConfig",
 				"CreateWikiHookRunner",
@@ -119,7 +119,7 @@
 			]
 		},
 		"Installer": {
-			"class": "Miraheze\\CreateWiki\\Hooks\\Handlers\\Installer"
+			"class": "WikiForge\\CreateWiki\\Hooks\\Handlers\\Installer"
 		}
 	},
 	"ResourceModules": {
@@ -327,6 +327,6 @@
 		"includes/ServiceWiring.php"
 	],
 	"load_composer_autoloader": true,
-	"callback": "Miraheze\\CreateWiki\\Hooks::onRegistration",
+	"callback": "WikiForge\\CreateWiki\\Hooks::onRegistration",
 	"manifest_version": 2
 }

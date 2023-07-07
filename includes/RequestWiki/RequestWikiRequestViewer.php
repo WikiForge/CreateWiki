@@ -1,6 +1,6 @@
 <?php
 
-namespace Miraheze\CreateWiki\RequestWiki;
+namespace WikiForge\CreateWiki\RequestWiki;
 
 use Config;
 use Html;
@@ -9,9 +9,9 @@ use HTMLFormField;
 use IContextSource;
 use Linker;
 use MediaWiki\MediaWikiServices;
-use Miraheze\CreateWiki\CreateWikiOOUIForm;
-use Miraheze\CreateWiki\Hooks\CreateWikiHookRunner;
-use Miraheze\CreateWiki\WikiManager;
+use WikiForge\CreateWiki\CreateWikiOOUIForm;
+use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
+use WikiForge\CreateWiki\WikiManager;
 use MWException;
 
 class RequestWikiRequestViewer {

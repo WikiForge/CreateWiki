@@ -1,10 +1,10 @@
 <?php
 
-namespace Miraheze\CreateWiki\RequestWiki;
+namespace WikiForge\CreateWiki\RequestWiki;
 
 use Job;
 use MediaWiki\MediaWikiServices;
-use Miraheze\CreateWiki\CreateWikiRegexConstraint;
+use WikiForge\CreateWiki\CreateWikiRegexConstraint;
 use Phpml\ModelManager;
 use Title;
 use User;

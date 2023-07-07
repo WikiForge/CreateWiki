@@ -1,6 +1,6 @@
 <?php
 
-namespace Miraheze\CreateWiki;
+namespace WikiForge\CreateWiki;
 
 use GenericParameterJob;
 use Job;

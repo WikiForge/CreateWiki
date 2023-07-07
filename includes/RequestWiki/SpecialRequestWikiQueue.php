@@ -1,9 +1,9 @@
 <?php
 
-namespace Miraheze\CreateWiki\RequestWiki;
+namespace WikiForge\CreateWiki\RequestWiki;
 
 use HTMLForm;
-use Miraheze\CreateWiki\Hooks\CreateWikiHookRunner;
+use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
 use SpecialPage;
 
 class SpecialRequestWikiQueue extends SpecialPage {

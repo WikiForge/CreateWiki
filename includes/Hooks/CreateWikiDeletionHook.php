@@ -1,6 +1,6 @@
 <?php
 
-namespace Miraheze\CreateWiki\Hooks;
+namespace WikiForge\CreateWiki\Hooks;
 
 use Wikimedia\Rdbms\DBConnRef;
 

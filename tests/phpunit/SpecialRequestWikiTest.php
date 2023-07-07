@@ -1,11 +1,11 @@
 <?php
 
-namespace Miraheze\CreateWiki\Tests;
+namespace WikiForge\CreateWiki\Tests;
 
 use DerivativeContext;
 use MediaWikiIntegrationTestCase;
-use Miraheze\CreateWiki\Hooks\CreateWikiHookRunner;
-use Miraheze\CreateWiki\RequestWiki\SpecialRequestWiki;
+use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
+use WikiForge\CreateWiki\RequestWiki\SpecialRequestWiki;
 use SpecialPage;
 use UserNotLoggedIn;
 use Wikimedia\TestingAccessWrapper;
@@ -14,7 +14,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group CreateWiki
  * @group Database
  * @group Medium
- * @coversDefaultClass \Miraheze\CreateWiki\RequestWiki\SpecialRequestWiki
+ * @coversDefaultClass \WikiForge\CreateWiki\RequestWiki\SpecialRequestWiki
  */
 class SpecialRequestWikiTest extends MediaWikiIntegrationTestCase {
 

@@ -1,13 +1,13 @@
 <?php
 
-namespace Miraheze\CreateWiki\CreateWiki;
+namespace WikiForge\CreateWiki\CreateWiki;
 
 use Config;
 use FormSpecialPage;
 use Html;
 use MediaWiki\MediaWikiServices;
-use Miraheze\CreateWiki\Hooks\CreateWikiHookRunner;
-use Miraheze\CreateWiki\WikiManager;
+use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
+use WikiForge\CreateWiki\WikiManager;
 
 class SpecialCreateWiki extends FormSpecialPage {
 

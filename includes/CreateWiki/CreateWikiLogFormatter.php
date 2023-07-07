@@ -1,6 +1,6 @@
 <?php
 
-namespace Miraheze\CreateWiki\CreateWiki;
+namespace WikiForge\CreateWiki\CreateWiki;
 
 use LogFormatter;
 use MediaWiki\MediaWikiServices;

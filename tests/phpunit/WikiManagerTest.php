@@ -1,12 +1,12 @@
 <?php
 
-namespace Miraheze\CreateWiki\Tests;
+namespace WikiForge\CreateWiki\Tests;
 
 use FatalError;
 use MediaWikiIntegrationTestCase;
-use Miraheze\CreateWiki\Hooks\CreateWikiHookRunner;
-use Miraheze\CreateWiki\RemoteWiki;
-use Miraheze\CreateWiki\WikiManager;
+use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
+use WikiForge\CreateWiki\RemoteWiki;
+use WikiForge\CreateWiki\WikiManager;
 use SiteConfiguration;
 use Wikimedia\Rdbms\Database;
 
@@ -14,7 +14,7 @@ use Wikimedia\Rdbms\Database;
  * @group CreateWiki
  * @group Database
  * @group Medium
- * @coversDefaultClass \Miraheze\CreateWiki\WikiManager
+ * @coversDefaultClass \WikiForge\CreateWiki\WikiManager
  */
 class WikiManagerTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {

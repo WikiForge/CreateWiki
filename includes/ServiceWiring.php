@@ -2,8 +2,8 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MediaWikiServices;
-use Miraheze\CreateWiki\CreateWikiNotificationsManager;
-use Miraheze\CreateWiki\Hooks\CreateWikiHookRunner;
+use WikiForge\CreateWiki\CreateWikiNotificationsManager;
+use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
 
 return [
 	'CreateWiki.NotificationsManager' => static function ( MediaWikiServices $services ): CreateWikiNotificationsManager {

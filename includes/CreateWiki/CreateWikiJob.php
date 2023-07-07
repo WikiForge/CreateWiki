@@ -1,12 +1,12 @@
 <?php
 
-namespace Miraheze\CreateWiki\CreateWiki;
+namespace WikiForge\CreateWiki\CreateWiki;
 
 use Exception;
 use Job;
 use MediaWiki\MediaWikiServices;
-use Miraheze\CreateWiki\RequestWiki\WikiRequest;
-use Miraheze\CreateWiki\WikiManager;
+use WikiForge\CreateWiki\RequestWiki\WikiRequest;
+use WikiForge\CreateWiki\WikiManager;
 use Title;
 use User;
 

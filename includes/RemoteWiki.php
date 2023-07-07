@@ -1,9 +1,9 @@
 <?php
 
-namespace Miraheze\CreateWiki;
+namespace WikiForge\CreateWiki;
 
 use MediaWiki\MediaWikiServices;
-use Miraheze\CreateWiki\Hooks\CreateWikiHookRunner;
+use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
 
 class RemoteWiki {
 	public $changes = [];

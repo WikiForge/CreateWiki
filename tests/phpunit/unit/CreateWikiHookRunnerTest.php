@@ -1,12 +1,12 @@
 <?php
 
-namespace Miraheze\CreateWiki\Tests\Unit;
+namespace WikiForge\CreateWiki\Tests\Unit;
 
 use MediaWiki\Tests\HookContainer\HookRunnerTestBase;
-use Miraheze\CreateWiki\Hooks\CreateWikiHookRunner;
+use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
 
 /**
- * @covers \Miraheze\CreateWiki\Hooks\CreateWikiHookRunner
+ * @covers \WikiForge\CreateWiki\Hooks\CreateWikiHookRunner
  */
 class CreateWikiHookRunnerTest extends HookRunnerTestBase {
 

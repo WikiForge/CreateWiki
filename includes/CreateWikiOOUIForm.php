@@ -1,6 +1,6 @@
 <?php
 
-namespace Miraheze\CreateWiki;
+namespace WikiForge\CreateWiki;
 
 use OOUI\FieldsetLayout;
 use OOUI\HtmlSnippet;

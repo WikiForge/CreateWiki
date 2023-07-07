@@ -1,6 +1,6 @@
 <?php
 
-namespace Miraheze\CreateWiki\Hooks\Handlers;
+namespace WikiForge\CreateWiki\Hooks\Handlers;
 
 use MediaWiki\Installer\Hook\LoadExtensionSchemaUpdatesHook;
 

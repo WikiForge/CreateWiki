@@ -1,6 +1,6 @@
 <?php
 
-namespace Miraheze\CreateWiki\Maintenance;
+namespace WikiForge\CreateWiki\Maintenance;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Miraheze\CreateWiki;
+namespace WikiForge\CreateWiki;
 
 use BagOStuff;
 use Config;
 use MediaWiki\MediaWikiServices;
-use Miraheze\CreateWiki\Hooks\CreateWikiHookRunner;
+use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
 use MWException;
 use ObjectCache;
 use Wikimedia\AtEase\AtEase;

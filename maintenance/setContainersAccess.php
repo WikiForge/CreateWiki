@@ -1,6 +1,6 @@
 <?php
 
-namespace Miraheze\CreateWiki\Maintenance;
+namespace WikiForge\CreateWiki\Maintenance;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
@@ -12,7 +12,7 @@ require_once "$IP/maintenance/Maintenance.php";
 use FileBackend;
 use Maintenance;
 use MediaWiki\MediaWikiServices;
-use Miraheze\CreateWiki\RemoteWiki;
+use WikiForge\CreateWiki\RemoteWiki;
 
 class SetContainersAccess extends Maintenance {
 	public function __construct() {

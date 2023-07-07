@@ -1,11 +1,11 @@
 <?php
 
-namespace Miraheze\CreateWiki\Tests;
+namespace WikiForge\CreateWiki\Tests;
 
 use MediaWikiIntegrationTestCase;
-use Miraheze\CreateWiki\Hooks\CreateWikiHookRunner;
-use Miraheze\CreateWiki\RemoteWiki;
-use Miraheze\CreateWiki\WikiManager;
+use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
+use WikiForge\CreateWiki\RemoteWiki;
+use WikiForge\CreateWiki\WikiManager;
 use SiteConfiguration;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
@@ -14,7 +14,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @group CreateWiki
  * @group Database
  * @group Medium
- * @coversDefaultClass \Miraheze\CreateWiki\RemoteWiki
+ * @coversDefaultClass \WikiForge\CreateWiki\RemoteWiki
  */
 class RemoteWikiTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {

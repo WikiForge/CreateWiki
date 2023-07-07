@@ -1,14 +1,14 @@
 <?php
 
-namespace Miraheze\CreateWiki\RequestWiki;
+namespace WikiForge\CreateWiki\RequestWiki;
 
 use Config;
 use FormSpecialPage;
 use Html;
 use ManualLogEntry;
 use MediaWiki\MediaWikiServices;
-use Miraheze\CreateWiki\CreateWikiRegexConstraint;
-use Miraheze\CreateWiki\Hooks\CreateWikiHookRunner;
+use WikiForge\CreateWiki\CreateWikiRegexConstraint;
+use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
 use MWException;
 use Title;
 

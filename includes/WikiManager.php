@@ -1,6 +1,6 @@
 <?php
 
-namespace Miraheze\CreateWiki;
+namespace WikiForge\CreateWiki;
 
 use DeferredUpdates;
 use Exception;
@@ -9,7 +9,7 @@ use FatalError;
 use ManualLogEntry;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
-use Miraheze\CreateWiki\Hooks\CreateWikiHookRunner;
+use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
 use SpecialPage;
 
 class WikiManager {

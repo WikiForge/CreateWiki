@@ -1,6 +1,6 @@
 <?php
 
-namespace Miraheze\CreateWiki;
+namespace WikiForge\CreateWiki;
 
 use Config;
 use EchoAttributeManager;
@@ -8,10 +8,10 @@ use MediaWiki\Hook\GetMagicVariableIDsHook;
 use MediaWiki\Hook\LoginFormValidErrorMessagesHook;
 use MediaWiki\Hook\ParserGetVariableValueSwitchHook;
 use MediaWiki\Hook\SetupAfterCacheHook;
-use Miraheze\CreateWiki\Hooks\CreateWikiHookRunner;
-use Miraheze\CreateWiki\Notifications\EchoCreateWikiPresentationModel;
-use Miraheze\CreateWiki\Notifications\EchoRequestCommentPresentationModel;
-use Miraheze\CreateWiki\Notifications\EchoRequestDeclinedPresentationModel;
+use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
+use WikiForge\CreateWiki\Notifications\EchoCreateWikiPresentationModel;
+use WikiForge\CreateWiki\Notifications\EchoRequestCommentPresentationModel;
+use WikiForge\CreateWiki\Notifications\EchoRequestDeclinedPresentationModel;
 use Wikimedia\Rdbms\ILBFactory;
 
 class Hooks implements
