@@ -113,7 +113,7 @@ class SpecialRequestWikiTest extends MediaWikiIntegrationTestCase {
 	 * @param bool $expected
 	 */
 	public function testOnSubmit( $formData, $expected ) {
-		$this->setMwGlobals( 'wgCreateWikiSubdomain', 'miraheze.org' );
+		$this->setMwGlobals( 'wgCreateWikiSubdomain', 'wikiforge.net' );
 
 		$hookRunner = $this->createMock( CreateWikiHookRunner::class );
 		$specialRequestWiki = new SpecialRequestWiki( $hookRunner );
