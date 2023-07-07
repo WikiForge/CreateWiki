@@ -5,9 +5,9 @@ namespace WikiForge\CreateWiki;
 use BagOStuff;
 use Config;
 use MediaWiki\MediaWikiServices;
-use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
 use MWException;
 use ObjectCache;
+use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\DBConnRef;
 

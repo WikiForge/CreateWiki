@@ -5,14 +5,14 @@ namespace WikiForge\CreateWiki\RequestWiki;
 use ManualLogEntry;
 use MediaWiki\MediaWikiServices;
 use Message;
-use WikiForge\CreateWiki\CreateWiki\CreateWikiJob;
-use WikiForge\CreateWiki\CreateWikiRegexConstraint;
-use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
-use WikiForge\CreateWiki\WikiManager;
 use MWException;
 use SpecialPage;
 use Title;
 use User;
+use WikiForge\CreateWiki\CreateWiki\CreateWikiJob;
+use WikiForge\CreateWiki\CreateWikiRegexConstraint;
+use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
+use WikiForge\CreateWiki\WikiManager;
 
 class WikiRequest {
 	public $dbname;

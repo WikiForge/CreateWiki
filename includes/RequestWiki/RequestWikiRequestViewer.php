@@ -9,10 +9,10 @@ use HTMLFormField;
 use IContextSource;
 use Linker;
 use MediaWiki\MediaWikiServices;
+use MWException;
 use WikiForge\CreateWiki\CreateWikiOOUIForm;
 use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
 use WikiForge\CreateWiki\WikiManager;
-use MWException;
 
 class RequestWikiRequestViewer {
 

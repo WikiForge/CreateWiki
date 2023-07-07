@@ -9,8 +9,8 @@ use FatalError;
 use ManualLogEntry;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
-use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
 use SpecialPage;
+use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
 
 class WikiManager {
 	private $config;

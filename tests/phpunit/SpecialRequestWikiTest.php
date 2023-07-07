@@ -4,10 +4,10 @@ namespace WikiForge\CreateWiki\Tests;
 
 use DerivativeContext;
 use MediaWikiIntegrationTestCase;
-use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
-use WikiForge\CreateWiki\RequestWiki\SpecialRequestWiki;
 use SpecialPage;
 use UserNotLoggedIn;
+use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
+use WikiForge\CreateWiki\RequestWiki\SpecialRequestWiki;
 use Wikimedia\TestingAccessWrapper;
 
 /**

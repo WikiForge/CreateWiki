@@ -4,10 +4,10 @@ namespace WikiForge\CreateWiki\RequestWiki;
 
 use Job;
 use MediaWiki\MediaWikiServices;
-use WikiForge\CreateWiki\CreateWikiRegexConstraint;
 use Phpml\ModelManager;
 use Title;
 use User;
+use WikiForge\CreateWiki\CreateWikiRegexConstraint;
 
 class RequestWikiAIJob extends Job {
 	public function __construct( Title $title, array $params ) {

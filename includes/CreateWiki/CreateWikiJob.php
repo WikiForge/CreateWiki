@@ -5,10 +5,10 @@ namespace WikiForge\CreateWiki\CreateWiki;
 use Exception;
 use Job;
 use MediaWiki\MediaWikiServices;
-use WikiForge\CreateWiki\RequestWiki\WikiRequest;
-use WikiForge\CreateWiki\WikiManager;
 use Title;
 use User;
+use WikiForge\CreateWiki\RequestWiki\WikiRequest;
+use WikiForge\CreateWiki\WikiManager;
 
 class CreateWikiJob extends Job {
 	public function __construct( Title $title, array $params ) {

@@ -3,8 +3,8 @@
 namespace WikiForge\CreateWiki\RequestWiki;
 
 use HTMLForm;
-use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
 use SpecialPage;
+use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
 
 class SpecialRequestWikiQueue extends SpecialPage {
 
