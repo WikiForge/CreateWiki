@@ -1,5 +1,5 @@
 {
-	"name": "miraheze/create-wiki",
+	"name": "wikiforge/create-wiki",
 	"type": "mediawiki-extension",
 	"description": "A MediaWiki extension to easily create new wikis on a wiki farm.",
 	"homepage": "https://www.mediawiki.org/wiki/Extension:CreateWiki",
@@ -19,7 +19,7 @@
 		}
 	],
 	"support": {
-		"issues": "https://phabricator.miraheze.org/tag/createwiki/",
+		"issues": "https://support.wikiforge.net/tag/createwiki/",
 		"wiki": "https://www.mediawiki.org/wiki/Extension:CreateWiki"
 	},
 	"require": {
