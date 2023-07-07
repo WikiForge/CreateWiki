@@ -4,10 +4,10 @@ namespace WikiForge\CreateWiki\Tests;
 
 use FatalError;
 use MediaWikiIntegrationTestCase;
+use SiteConfiguration;
 use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
 use WikiForge\CreateWiki\RemoteWiki;
 use WikiForge\CreateWiki\WikiManager;
-use SiteConfiguration;
 use Wikimedia\Rdbms\Database;
 
 /**

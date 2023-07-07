@@ -3,10 +3,10 @@
 namespace WikiForge\CreateWiki\Tests;
 
 use MediaWikiIntegrationTestCase;
+use SiteConfiguration;
 use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
 use WikiForge\CreateWiki\RemoteWiki;
 use WikiForge\CreateWiki\WikiManager;
-use SiteConfiguration;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 

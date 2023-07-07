@@ -7,10 +7,10 @@ use FormSpecialPage;
 use Html;
 use ManualLogEntry;
 use MediaWiki\MediaWikiServices;
-use WikiForge\CreateWiki\CreateWikiRegexConstraint;
-use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
 use MWException;
 use Title;
+use WikiForge\CreateWiki\CreateWikiRegexConstraint;
+use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
 
 class SpecialRequestWiki extends FormSpecialPage {
 
