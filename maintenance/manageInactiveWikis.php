@@ -168,10 +168,10 @@ class ManageInactiveWikis extends Maintenance {
 	private function notify( $wiki ) {
 		$notificationData = [
 			'type' => 'closure',
-			'subject' => wfMessage( 'miraheze-close-email-subject', $wiki )->inContentLanguage()->text(),
+			'subject' => wfMessage( 'wikitide-close-email-subject', $wiki )->inContentLanguage()->text(),
 			'body' => [
-				'html' => wfMessage( 'miraheze-close-email-body' )->inContentLanguage()->text(),
-				'text' => wfMessage( 'miraheze-close-email-body' )->inContentLanguage()->text(),
+				'html' => wfMessage( 'wikitide-close-email-body' )->inContentLanguage()->text(),
+				'text' => wfMessage( 'wikitide-close-email-body' )->inContentLanguage()->text(),
 			],
 		];
 
