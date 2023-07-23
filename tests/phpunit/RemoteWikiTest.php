@@ -20,10 +20,6 @@ class RemoteWikiTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		if ( file_exists( MW_INSTALL_PATH . '/maintenance/createwiki_sql_already_ran.txt' ) ) {
-			unlink( MW_INSTALL_PATH . '/maintenance/createwiki_sql_already_ran.txt' );
-		}
-
 		$conf = new SiteConfiguration();
 		$conf->suffixes = [ 'test' ];
 
@@ -38,6 +34,27 @@ class RemoteWikiTest extends MediaWikiIntegrationTestCase {
 			'host' => $GLOBALS['wgDBserver'],
 			'user' => 'root',
 		] );
+
+		$db->insert(
+			'wikidb.cw_wikis',
+			[
+				'wiki_dbname' => 'wikidb',
+				'wiki_dbcluster' => 'c1',
+				'wiki_sitename' => 'TestWiki',
+				'wiki_language' => 'en',
+				'wiki_private' => (int)0,
+				'wiki_creation' => $db->timestamp(),
+				'wiki_category' => 'uncategorized',
+				'wiki_closed' => (int)0,
+				'wiki_deleted' => (int)0,
+				'wiki_locked' => (int)0,
+				'wiki_inactive' => (int)0,
+				'wiki_inactive_exempt' => (int)0,
+				'wiki_url' => 'http://127.0.0.1:9412'
+			],
+			__METHOD__,
+			[ 'IGNORE' ]
+		);
 
 		$db->begin();
 		$db->query( "GRANT ALL PRIVILEGES ON `remotewikitest`.* TO 'wikiuser'@'localhost';" );
