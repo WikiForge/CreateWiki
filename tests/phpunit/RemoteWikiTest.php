@@ -2,12 +2,12 @@
 
 namespace WikiForge\CreateWiki\Tests;
 
+use MediaWiki\MediaWikiServices;
 use MediaWikiIntegrationTestCase;
 use SiteConfiguration;
 use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
 use WikiForge\CreateWiki\RemoteWiki;
 use WikiForge\CreateWiki\WikiManager;
-use Wikimedia\Rdbms\Database;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -30,7 +30,10 @@ class RemoteWikiTest extends MediaWikiIntegrationTestCase {
 		$this->setMwGlobals( 'wgCreateWikiUsePrivateWikis', true );
 		$this->setMwGlobals( 'wgCreateWikiUseSecureContainers', true );
 
-		$db = Database::factory( 'mysql', [ 'host' => $GLOBALS['wgDBserver'], 'user' => 'root' ] );
+		$db = MediaWikiServices::getInstance()->getDatabaseFactory()->create( 'mysql', [
+			'host' => $GLOBALS['wgDBserver'],
+			'user' => 'root',
+		] );
 
 		$db->begin();
 		$db->query( "GRANT ALL PRIVILEGES ON `remotewikitest`.* TO 'wikiuser'@'localhost';" );
