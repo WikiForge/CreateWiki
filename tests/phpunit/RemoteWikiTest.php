@@ -38,7 +38,6 @@ class RemoteWikiTest extends MediaWikiIntegrationTestCase {
 		var_dump( 'CW-DB: ' . $GLOBALS['wgCreateWikiDatabase'] );
 
 		$db->begin();
-		
 
 		$db->insert(
 			$GLOBALS['wgDBname'] . '.cw_wikis',
