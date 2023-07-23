@@ -34,6 +34,8 @@ class RemoteWikiTest extends MediaWikiIntegrationTestCase {
 			'host' => $GLOBALS['wgDBserver'],
 			'user' => 'root',
 		] );
+		
+		$db->begin();
 
 		$db->insert(
 			'wikidb.cw_wikis',
@@ -56,7 +58,6 @@ class RemoteWikiTest extends MediaWikiIntegrationTestCase {
 			[ 'IGNORE' ]
 		);
 
-		$db->begin();
 		$db->query( "GRANT ALL PRIVILEGES ON `remotewikitest`.* TO 'wikiuser'@'localhost';" );
 		$db->query( "FLUSH PRIVILEGES;" );
 		$db->commit();
