@@ -20,6 +20,10 @@ class WikiManagerTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
+		if ( file_exists( MW_INSTALL_PATH . '/maintenance/createwiki_sql_already_ran.txt' ) ) {
+			unlink( MW_INSTALL_PATH . '/maintenance/createwiki_sql_already_ran.txt' );
+		}
+
 		$conf = new SiteConfiguration();
 		$conf->suffixes = [ 'test' ];
 
