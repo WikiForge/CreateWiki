@@ -58,7 +58,7 @@ class RemoteWikiTest extends MediaWikiIntegrationTestCase {
 			);
 
 		} catch ( DBQueryError $e ) {
-			return;
+			// Do nothing
 		}
 
 		$db = MediaWikiServices::getInstance()->getDatabaseFactory()->create( 'mysql', [
