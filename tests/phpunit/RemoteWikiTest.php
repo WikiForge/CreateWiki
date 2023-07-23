@@ -8,6 +8,7 @@ use SiteConfiguration;
 use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
 use WikiForge\CreateWiki\RemoteWiki;
 use WikiForge\CreateWiki\WikiManager;
+use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -30,36 +31,42 @@ class RemoteWikiTest extends MediaWikiIntegrationTestCase {
 		$this->setMwGlobals( 'wgCreateWikiUsePrivateWikis', true );
 		$this->setMwGlobals( 'wgCreateWikiUseSecureContainers', true );
 
+		try {
+			$dbw = MediaWikiServices::getInstance()
+				->getDBLoadBalancer()
+				->getMaintenanceConnectionRef( DB_PRIMARY );
+
+			$dbw->insert(
+				'cw_wikis',
+				[
+					'wiki_dbname' => 'wikidb',
+					'wiki_dbcluster' => 'c1',
+					'wiki_sitename' => 'TestWiki',
+					'wiki_language' => 'en',
+					'wiki_private' => (int)0,
+					'wiki_creation' => $dbw->timestamp(),
+					'wiki_category' => 'uncategorized',
+					'wiki_closed' => (int)0,
+					'wiki_deleted' => (int)0,
+					'wiki_locked' => (int)0,
+					'wiki_inactive' => (int)0,
+					'wiki_inactive_exempt' => (int)0,
+					'wiki_url' => 'http://127.0.0.1:9412'
+				],
+				__METHOD__,
+				[ 'IGNORE' ]
+			);
+
+		} catch ( DBQueryError $e ) {
+			return;
+		}
+
 		$db = MediaWikiServices::getInstance()->getDatabaseFactory()->create( 'mysql', [
 			'host' => $GLOBALS['wgDBserver'],
 			'user' => 'root',
 		] );
-		var_dump( 'DB: ' . $GLOBALS['wgDBname'] );
-		var_dump( 'CW-DB: ' . $GLOBALS['wgCreateWikiDatabase'] );
 
 		$db->begin();
-
-		$db->insert(
-			$GLOBALS['wgDBname'] . '.cw_wikis',
-			[
-				'wiki_dbname' => 'wikidb',
-				'wiki_dbcluster' => 'c1',
-				'wiki_sitename' => 'TestWiki',
-				'wiki_language' => 'en',
-				'wiki_private' => (int)0,
-				'wiki_creation' => $db->timestamp(),
-				'wiki_category' => 'uncategorized',
-				'wiki_closed' => (int)0,
-				'wiki_deleted' => (int)0,
-				'wiki_locked' => (int)0,
-				'wiki_inactive' => (int)0,
-				'wiki_inactive_exempt' => (int)0,
-				'wiki_url' => 'http://127.0.0.1:9412'
-			],
-			__METHOD__,
-			[ 'IGNORE' ]
-		);
-
 		$db->query( "GRANT ALL PRIVILEGES ON `remotewikitest`.* TO 'wikiuser'@'localhost';" );
 		$db->query( "FLUSH PRIVILEGES;" );
 		$db->commit();
