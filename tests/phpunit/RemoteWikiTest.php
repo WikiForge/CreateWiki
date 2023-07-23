@@ -34,7 +34,7 @@ class RemoteWikiTest extends MediaWikiIntegrationTestCase {
 			'host' => $GLOBALS['wgDBserver'],
 			'user' => 'root',
 		] );
-		
+
 		$db->begin();
 
 		$db->insert(
