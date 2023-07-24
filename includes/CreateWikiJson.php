@@ -4,8 +4,8 @@ namespace WikiForge\CreateWiki;
 
 use BagOStuff;
 use Config;
-use MediaWiki\MediaWikiServices;
 use Exception;
+use MediaWiki\MediaWikiServices;
 use ObjectCache;
 use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
 use Wikimedia\AtEase\AtEase;

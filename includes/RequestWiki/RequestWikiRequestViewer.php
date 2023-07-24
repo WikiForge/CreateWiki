@@ -3,13 +3,13 @@
 namespace WikiForge\CreateWiki\RequestWiki;
 
 use Config;
+use Exception;
 use Html;
 use HTMLForm;
 use HTMLFormField;
 use IContextSource;
 use Linker;
 use MediaWiki\MediaWikiServices;
-use Exception;
 use WikiForge\CreateWiki\CreateWikiOOUIForm;
 use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
 use WikiForge\CreateWiki\WikiManager;

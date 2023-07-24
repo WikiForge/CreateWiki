@@ -2,10 +2,10 @@
 
 namespace WikiForge\CreateWiki\RequestWiki;
 
+use Exception;
 use ManualLogEntry;
 use MediaWiki\MediaWikiServices;
 use Message;
-use Exception;
 use SpecialPage;
 use Title;
 use User;

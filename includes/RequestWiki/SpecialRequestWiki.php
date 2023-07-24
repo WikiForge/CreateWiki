@@ -3,11 +3,11 @@
 namespace WikiForge\CreateWiki\RequestWiki;
 
 use Config;
+use Exception;
 use FormSpecialPage;
 use Html;
 use ManualLogEntry;
 use MediaWiki\MediaWikiServices;
-use Exception;
 use Title;
 use WikiForge\CreateWiki\CreateWikiRegexConstraint;
 use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
