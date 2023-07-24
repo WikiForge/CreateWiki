@@ -9,9 +9,9 @@ if ( $IP === false ) {
 
 require_once "$IP/maintenance/Maintenance.php";
 
+use InvalidArgumentException;
 use Maintenance;
 use MediaWiki\MediaWikiServices;
-use MWException;
 
 class PopulateWikiCreation extends Maintenance {
 	public function __construct() {
@@ -33,7 +33,7 @@ class PopulateWikiCreation extends Maintenance {
 		);
 
 		if ( !$res || !is_object( $res ) ) {
-			throw new MWException( '$res was not set to a valid array.' );
+			throw new InvalidArgumentException( '$res was not set to a valid array.' );
 		}
 
 		foreach ( $res as $row ) {
