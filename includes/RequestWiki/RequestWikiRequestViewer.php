@@ -9,7 +9,7 @@ use HTMLFormField;
 use IContextSource;
 use Linker;
 use MediaWiki\MediaWikiServices;
-use MWException;
+use Exception;
 use WikiForge\CreateWiki\CreateWikiOOUIForm;
 use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
 use WikiForge\CreateWiki\WikiManager;
@@ -311,7 +311,7 @@ class RequestWikiRequestViewer {
 
 		try {
 			$request = new WikiRequest( (int)$id, $this->hookRunner );
-		} catch ( MWException $e ) {
+		} catch ( Exception $e ) {
 			$context->getOutput()->addHTML( Html::errorBox( wfMessage( 'requestwiki-unknown' )->escaped() ) );
 
 			return;
