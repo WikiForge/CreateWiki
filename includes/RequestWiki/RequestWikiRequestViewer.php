@@ -190,6 +190,41 @@ class RequestWikiRequestViewer {
 				];
 			}
 
+			if ( $this->config->get( 'RequestWikiMigrationInquire' ) ) {
+				$formDescriptor['edit-migration'] = [
+					'type' => 'check',
+					'label-message' => 'requestwiki-label-migration',
+					'default' => $request->migration,
+					'section' => 'edit',
+				];
+
+				$formDescriptor['edit-migration-location'] = [
+					'type' => 'text',
+					'label-message' => 'requestwiki-label-migration-location',
+					'hide-if' => [ '==', 'wp-edit-migration', 1 ],
+					'default' => $request->migrationlocation,
+					'section' => 'edit',
+				];
+
+				$formDescriptor['edit-migration-type'] = [
+					'type' => 'radio',
+					'option-messages' =>
+						'requestwiki-option-migration-fork' => 'fork',
+						'requestwiki-option-migration-migrate' => 'migrate',
+					'hide-if' => [ '==', 'wp-edit-migration', 1 ],
+					'default' => $request->migrationtype,
+					'section' => 'edit',
+				];
+
+				$formDescriptor['edit-migration-details'] = [
+					'type' => 'text',
+					'label-message' => 'requestwiki-label-migration-details',
+					'hide-if' => [ '==', 'wp-edit-migration', 1 ],
+					'default' => $request->migrationdetails,
+					'section' => 'edit',
+				];
+			}
+
 			if ( $this->config->get( 'CreateWikiPurposes' ) ) {
 				$formDescriptor['edit-purpose'] = [
 					'type' => 'select',
