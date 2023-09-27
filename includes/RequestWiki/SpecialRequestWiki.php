@@ -107,9 +107,10 @@ class SpecialRequestWiki extends FormSpecialPage {
 
 			$formDescriptor['migration-type'] = [
 				'type' => 'radio',
-				'option-messages' =>
+				'option-messages' => [
 					'requestwiki-option-migration-fork' => 'fork',
 					'requestwiki-option-migration-migrate' => 'migrate',
+				],
 				'hide-if' => [ '==', 'wp-migration', 1 ],
 				'label-message' => 'requestwiki-label-migration-type',
 			];
