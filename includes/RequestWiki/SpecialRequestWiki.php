@@ -3,11 +3,11 @@
 namespace WikiForge\CreateWiki\RequestWiki;
 
 use Config;
+use Exception;
 use FormSpecialPage;
 use Html;
 use ManualLogEntry;
 use MediaWiki\MediaWikiServices;
-use MWException;
 use Title;
 use WikiForge\CreateWiki\CreateWikiRegexConstraint;
 use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
@@ -136,7 +136,7 @@ class SpecialRequestWiki extends FormSpecialPage {
 
 		try {
 			$requestID = $request->save();
-		} catch ( MWException $e ) {
+		} catch ( Exception $e ) {
 			$out->addHTML( Html::errorBox( $this->msg( 'requestwiki-error-patient' )->plain() ) );
 
 			return false;
