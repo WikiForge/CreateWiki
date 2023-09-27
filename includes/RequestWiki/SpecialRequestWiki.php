@@ -36,6 +36,9 @@ class SpecialRequestWiki extends FormSpecialPage {
 
 		$this->checkExecutePermissions( $this->getUser() );
 
+		$out->addModules( [ 'mediawiki.special.userrights' ] );
+		$out->addModuleStyles( 'mediawiki.notification.convertmessagebox.styles' );
+
 		if ( !$request->wasPosted() && $this->config->get( 'CreateWikiCustomDomainPage' ) ) {
 			$customdomainurl = Title::newFromText( $this->config->get( 'CreateWikiCustomDomainPage' ) )->getFullURL();
 
@@ -76,7 +79,7 @@ class SpecialRequestWiki extends FormSpecialPage {
 			];
 		}
 
-		if ( $this->config->get( 'CreateWikiUsePrivateWikis' ) ) {
+		if ( $this->config->get( 'CreateWikiUsePrivateWikis' ) && !$this->config->get( 'RequestWikiDisablePrivateRequests' ) ) {
 			$formDescriptor['private'] = [
 				'type' => 'check',
 				'label-message' => 'requestwiki-label-private',
@@ -87,6 +90,34 @@ class SpecialRequestWiki extends FormSpecialPage {
 			$formDescriptor['bio'] = [
 				'type' => 'check',
 				'label-message' => 'requestwiki-label-bio',
+			];
+		}
+
+		if ( $this->config->get( 'RequestWikiMigrationInquire' ) ) {
+			$formDescriptor['migration'] = [
+				'type' => 'check',
+				'label-message' => 'requestwiki-label-migration',
+			];
+
+			$formDescriptor['migration-location'] = [
+				'type' => 'text',
+				'hide-if' => [ '==', 'wp-migration', 1 ],
+				'label-message' => 'requestwiki-label-migration-location',
+			];
+
+			$formDescriptor['migration-type'] = [
+				'type' => 'radio',
+				'option-messages' =>
+					'requestwiki-option-migration-fork' => 'fork',
+					'requestwiki-option-migration-migrate' => 'migrate',
+				'hide-if' => [ '==', 'wp-migration', 1 ],
+				'label-message' => 'requestwiki-label-migration-type',
+			];
+
+			$formDescriptor['migration-details'] = [
+				'type' => 'textarea',
+				'hide-if' => [ '==', 'wp-migration', 1 ],
+				'label-message' => 'requestwiki-label-migration-details',
 			];
 		}
 
@@ -101,6 +132,7 @@ class SpecialRequestWiki extends FormSpecialPage {
 		$formDescriptor['reason'] = [
 			'type' => 'textarea',
 			'rows' => 4,
+			'minlength' => $this->config->get( 'RequestWikiMinimumLength' ) ?? false,
 			'label-message' => 'createwiki-label-reason',
 			'help-message' => 'createwiki-help-reason',
 			'required' => true,
@@ -119,7 +151,16 @@ class SpecialRequestWiki extends FormSpecialPage {
 		$status = $request->parseSubdomain( $subdomain, $err );
 		if ( $status === false ) {
 			if ( $err !== '' ) {
-				$out->addHTML( Html::errorBox( $this->msg( 'createwiki-error-' . $err )->parse() ) );
+				$out->addHTML(
+					Html::successBox(
+						Html::element(
+							'p',
+							[],
+							$this->msg( 'createwiki-error-' . $err )->parse()
+						),
+						'mw-notify-success'
+					)
+				);
 			}
 
 			return false;
@@ -133,11 +174,24 @@ class SpecialRequestWiki extends FormSpecialPage {
 		$request->category = $formData['category'] ?? '';
 		$request->purpose = $formData['purpose'] ?? '';
 		$request->bio = $formData['bio'] ?? 0;
+		$request->migration = $formData['migration'] ?? 0;
+		$request->migrationlocation = $formData['migration-location'] ?? '';
+		$request->migrationtype = $formData['migration-type'] ?? '';
+		$request->migrationdetails = $formData['migration-details'] ?? '';
 
 		try {
 			$requestID = $request->save();
 		} catch ( Exception $e ) {
-			$out->addHTML( Html::errorBox( $this->msg( 'requestwiki-error-patient' )->plain() ) );
+			$out->addHTML(
+				Html::successBox(
+					Html::element(
+						'p',
+						[],
+						$this->msg( 'requestwiki-error-patient' )->plain()
+					),
+					'mw-notify-success'
+				)
+			);
 
 			return false;
 		}

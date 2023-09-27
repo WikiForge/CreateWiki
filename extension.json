@@ -310,6 +310,21 @@
 			"description": "Boolean. Whether to implement front end logic for marking wikis as experimental.",
 			"public": true,
 			"value": false
+		},
+		"RequestWikiDisablePrivateRequests": {
+			"description": "Boolean. Whether to disable the ability to request private wikis.",
+			"public": true,
+			"value": false
+		},
+		"RequestWikiMinimumLength": {
+			"description": "Int. Minimum length of wiki requests.",
+			"public": true,
+			"value": false
+		},
+		"RequestWikiMigrationInquire": {
+			"description": "Boolean. Whether to ask additional questions about wiki migrations or not.",
+			"public": true,
+			"value": false
 		}
 	},
 	"ConfigRegistry": {
