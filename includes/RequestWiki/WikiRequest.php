@@ -27,6 +27,10 @@ class WikiRequest {
 	public $visibility = 0;
 	public $timestamp;
 	public $bio;
+	public $migration;
+	public $migrationlocation;
+	public $migrationtype;
+	public $migrationdetails;
 	public $purpose;
 
 	private $id;
@@ -70,7 +74,11 @@ class WikiRequest {
 			$this->timestamp = $dbRequest->cw_timestamp;
 			$this->visibility = $dbRequest->cw_visibility;
 			$this->bio = $dbRequest->cw_bio;
-
+			$this->migration = $dbRequest->cw_migration;
+			$this->migrationlocation = $dbRequest->cw_migrationlocation;
+			$this->migrationtype = $dbRequest->cw_migrationtype;
+			$this->migrationdetails = $dbRequest->cw_migrationdetails;
+			
 			$newDesc = explode( "\n", $dbRequest->cw_comment, 2 );
 			$purposeCheck = explode( ':', $newDesc[0], 2 );
 
@@ -320,6 +328,10 @@ class WikiRequest {
 			'cw_category' => $this->category,
 			'cw_visibility' => $this->visibility,
 			'cw_bio' => $this->bio,
+			'cw_migration' => $this->migration,
+			'cw_migrationlocation' => $this->migrationlocation,
+			'cw_migrationtype' => $this->migrationtype,
+			'cw_migrationdetails' => $this->migrationdetails,
 		];
 
 		$this->dbw->upsert(
