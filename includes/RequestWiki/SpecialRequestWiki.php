@@ -76,7 +76,7 @@ class SpecialRequestWiki extends FormSpecialPage {
 			];
 		}
 
-		if ( $this->config->get( 'CreateWikiUsePrivateWikis' ) ) {
+		if ( $this->config->get( 'CreateWikiUsePrivateWikis' ) && !$this->config->get( 'RequestWikiDisablePrivateRequests' ) ) {
 			$formDescriptor['private'] = [
 				'type' => 'check',
 				'label-message' => 'requestwiki-label-private',
@@ -87,6 +87,41 @@ class SpecialRequestWiki extends FormSpecialPage {
 			$formDescriptor['bio'] = [
 				'type' => 'check',
 				'label-message' => 'requestwiki-label-bio',
+			];
+		}
+
+		if ( $this->config->get( 'RequestWikiMigrationInquire' ) ) {
+			$formDescriptor['migration'] = [
+				'type' => 'check',
+				'label-message' => 'requestwiki-label-migration',
+			];
+
+			$formDescriptor['migration-location'] = [
+				'type' => 'check',
+				'hide-if' => [ '==', 'wp-migration', 1 ]
+				'label-message' => 'requestwiki-label-migration-location',
+			];
+
+			$formDescriptor['migration-type'] = [
+				'type' => 'radio',
+				'option-messages' =>
+					'requestwiki-option-migration-fork' => 'fork',
+					'requestwiki-option-migration-migrate' => 'migrate',
+				'hide-if' => [ '==', 'wp-migration', 1 ]
+				'label-message' => 'requestwiki-label-migration-type',
+			];
+
+			$formDescriptor['migration-details'] = [
+				'type' => 'text',
+				'hide-if' => [ '==', 'wp-migration', 1 ]
+				'label-message' => 'requestwiki-label-migration-details',
+			];
+		}
+
+		if ( $this->config->get( 'RequestWikiMigrationInquire' ) ) {
+			$formDescriptor['bio'] = [
+				'type' => 'check',
+				'label-message' => 'requestwiki-label-migration',
 			];
 		}
 
@@ -101,6 +136,7 @@ class SpecialRequestWiki extends FormSpecialPage {
 		$formDescriptor['reason'] = [
 			'type' => 'textarea',
 			'rows' => 4,
+			'minlength' => $this->config->get( 'RequestWikiMinimumLength' ) ?? false,
 			'label-message' => 'createwiki-label-reason',
 			'help-message' => 'createwiki-help-reason',
 			'required' => true,
