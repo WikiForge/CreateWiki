@@ -202,10 +202,10 @@ class CreateWikiJson {
 	 */
 	private function generateDatabaseList() {
 		$databaseLists = [];
-		$this->hookRunner->onCreateWikiJsonGenerateDatabaseList( $databaseLists );
+		$this->hookRunner->onCreateWikiJsonGenerateDatabaseList( "{$databaseLists}" );
 
 		if ( !empty( $databaseLists ) ) {
-			$this->generateDatabasesJsonFile( $databaseLists );
+			$this->generateDatabasesJsonFile( "{$databaseLists}" );
 			return;
 		}
 
@@ -251,7 +251,7 @@ class CreateWikiJson {
 			],
 		];
 
-		$this->generateDatabasesJsonFile( $databaseLists );
+		$this->generateDatabasesJsonFile( "{$databaseLists}" );
 	}
 
 	private function generateDatabasesJsonFile( array $databaseLists ) {
