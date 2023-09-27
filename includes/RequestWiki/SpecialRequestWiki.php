@@ -36,6 +36,9 @@ class SpecialRequestWiki extends FormSpecialPage {
 
 		$this->checkExecutePermissions( $this->getUser() );
 
+		$out->addModules( [ 'mediawiki.special.userrights' ] );
+		$out->addModuleStyles( 'mediawiki.notification.convertmessagebox.styles' );
+
 		if ( !$request->wasPosted() && $this->config->get( 'CreateWikiCustomDomainPage' ) ) {
 			$customdomainurl = Title::newFromText( $this->config->get( 'CreateWikiCustomDomainPage' ) )->getFullURL();
 
@@ -148,7 +151,16 @@ class SpecialRequestWiki extends FormSpecialPage {
 		$status = $request->parseSubdomain( $subdomain, $err );
 		if ( $status === false ) {
 			if ( $err !== '' ) {
-				$out->addHTML( Html::errorBox( $this->msg( 'createwiki-error-' . $err )->parse() ) );
+				$out->addHTML(
+					Html::successBox(
+						Html::element(
+							'p',
+							[],
+							$this->msg( 'createwiki-error-' . $err )->parse()
+						),
+						'mw-notify-success'
+					)
+				);
 			}
 
 			return false;
@@ -170,7 +182,16 @@ class SpecialRequestWiki extends FormSpecialPage {
 		try {
 			$requestID = $request->save();
 		} catch ( Exception $e ) {
-			$out->addHTML( Html::errorBox( $this->msg( 'requestwiki-error-patient' )->plain() ) );
+			$out->addHTML(
+				Html::successBox(
+					Html::element(
+						'p',
+						[],
+						$this->msg( 'requestwiki-error-patient' )->plain()
+					),
+					'mw-notify-success'
+				)
+			);
 
 			return false;
 		}
