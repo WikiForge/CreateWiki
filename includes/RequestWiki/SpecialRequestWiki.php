@@ -97,8 +97,8 @@ class SpecialRequestWiki extends FormSpecialPage {
 			];
 
 			$formDescriptor['migration-location'] = [
-				'type' => 'check',
-				'hide-if' => [ '==', 'wp-migration', 1 ]
+				'type' => 'text',
+				'hide-if' => [ '==', 'wp-migration', 1 ],
 				'label-message' => 'requestwiki-label-migration-location',
 			];
 
@@ -107,13 +107,13 @@ class SpecialRequestWiki extends FormSpecialPage {
 				'option-messages' =>
 					'requestwiki-option-migration-fork' => 'fork',
 					'requestwiki-option-migration-migrate' => 'migrate',
-				'hide-if' => [ '==', 'wp-migration', 1 ]
+				'hide-if' => [ '==', 'wp-migration', 1 ],
 				'label-message' => 'requestwiki-label-migration-type',
 			];
 
 			$formDescriptor['migration-details'] = [
-				'type' => 'text',
-				'hide-if' => [ '==', 'wp-migration', 1 ]
+				'type' => 'textarea',
+				'hide-if' => [ '==', 'wp-migration', 1 ],
 				'label-message' => 'requestwiki-label-migration-details',
 			];
 		}
