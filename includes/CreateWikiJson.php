@@ -235,11 +235,11 @@ class CreateWikiJson {
 
 		$databaseLists = [
 			'databases' => [
-				'combi' => "{$combiList}",
+				'combi' => $combiList,
 			],
 			'deleted' => [
 				'deleted' => 'databases',
-				'databases' => "{$deletedList}",
+				'databases' => $deletedList,
 			],
 		];
 
