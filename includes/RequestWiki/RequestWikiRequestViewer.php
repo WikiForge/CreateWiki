@@ -138,9 +138,6 @@ class RequestWikiRequestViewer {
 
 				if ( $wmError ) {
 					$context->getOutput()->addHTML( Html::errorBox( $wmError ) );
-
-					// We don't want to be able to approve it if the database is not valid
-					unset( $formDescriptor['submission-action']['options-messages']['requestwikiqueue-approve'] );
 				}
 
 				$formDescriptor += [
@@ -189,6 +186,11 @@ class RequestWikiRequestViewer {
 						'section' => 'edit',
 						],
 				];
+
+				if ( $wmError ) {
+					// We don't want to be able to approve it if the database is not valid
+					unset( $formDescriptor['submission-action']['options-messages']['requestwikiqueue-approve'] );
+				}
 
 				if ( $this->config->get( 'CreateWikiCannedResponses' ) ) {
 					$formDescriptor['reason']['type'] = 'selectorother';
