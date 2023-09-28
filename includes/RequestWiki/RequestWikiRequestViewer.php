@@ -49,7 +49,7 @@ class RequestWikiRequestViewer {
 
 			return [];
 		}
-		if ( $userR->getId() == $request->requester->getId() && $request->getStatus() == 'inreview' ) {
+		if ( $userR->getId() == $request->requester->getId() && $request->getStatus() === 'inreview' ) {
 			$formDescriptor = [
 				'requesterpendinginfo' => [
 					'default' => wfMessage( 'requestwikiqueue-request-info-submission' )->text(),
