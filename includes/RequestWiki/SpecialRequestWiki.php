@@ -39,11 +39,7 @@ class SpecialRequestWiki extends FormSpecialPage {
 		$out->addModules( [ 'mediawiki.special.userrights' ] );
 		$out->addModuleStyles( 'mediawiki.notification.convertmessagebox.styles' );
 
-		if ( !$request->wasPosted() && $this->config->get( 'CreateWikiCustomDomainPage' ) ) {
-			$customdomainurl = Title::newFromText( $this->config->get( 'CreateWikiCustomDomainPage' ) )->getFullURL();
-
-			$out->addWikiMsg( 'requestwiki-header', $customdomainurl );
-		}
+		$out->addWikiMsg( 'requestwiki-header', $customdomainurl );
 
 		$form = $this->getForm();
 		if ( $form->show() ) {
@@ -153,13 +149,13 @@ class SpecialRequestWiki extends FormSpecialPage {
 		if ( $status === false ) {
 			if ( $err !== '' ) {
 				$out->addHTML(
-					Html::errorBox(
+					Html::warningBox(
 						Html::element(
 							'p',
 							[],
 							$this->msg( 'createwiki-error-' . $err )->parse()
 						),
-						'mw-notify-success'
+						'mw-notify-error'
 					)
 				);
 			}
@@ -184,13 +180,13 @@ class SpecialRequestWiki extends FormSpecialPage {
 			$requestID = $request->save();
 		} catch ( Exception $e ) {
 			$out->addHTML(
-				Html::errorBox(
+				Html::warningBox(
 					Html::element(
 						'p',
 						[],
 						$this->msg( 'requestwiki-error-patient' )->plain()
 					),
-					'mw-notify-success'
+					'mw-notify-error'
 				)
 			);
 
