@@ -143,7 +143,7 @@ class RequestWikiRequestViewer {
 						'section' => 'edit',
 					],
 					'submission-action' => [
-						'type' => 'select',
+						'type' => 'radio',
 						'label-message' => 'requestwikiqueue-request-label-action',
 						'options-messages' => [
 							'requestwikiqueue-approve' => 'approve',
