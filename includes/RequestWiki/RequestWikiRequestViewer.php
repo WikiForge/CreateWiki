@@ -201,7 +201,7 @@ class RequestWikiRequestViewer {
 				$formDescriptor['edit-migration-location'] = [
 					'type' => 'text',
 					'label-message' => 'requestwiki-label-migration-location',
-					'hide-if' => [ '==', 'wp-edit-migration', '1' ],
+					'hide-if' => [ '!==', 'wpedit-migration', '1' ],
 					'default' => $request->migrationlocation,
 					'section' => 'edit',
 				];
@@ -212,7 +212,7 @@ class RequestWikiRequestViewer {
 						'requestwiki-option-migration-fork' => 'fork',
 						'requestwiki-option-migration-migrate' => 'migrate',
 					],
-					'hide-if' => [ '==', 'wp-edit-migration', '1' ],
+					'hide-if' => [ '!==', 'wpedit-migration', '1' ],
 					'default' => $request->migrationtype,
 					'section' => 'edit',
 				];
@@ -220,7 +220,7 @@ class RequestWikiRequestViewer {
 				$formDescriptor['edit-migration-details'] = [
 					'type' => 'text',
 					'label-message' => 'requestwiki-label-migration-details',
-					'hide-if' => [ '==', 'wp-edit-migration', '1' ],
+					'hide-if' => [ '!==', 'wpedit-migration', '1' ],
 					'default' => $request->migrationdetails,
 					'section' => 'edit',
 				];
