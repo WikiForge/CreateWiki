@@ -158,9 +158,14 @@ class RequestWikiRequestViewer {
 						'cssclass' => 'createwiki-infuse',
 						'section' => 'edit',
 					],
+					'reason' => [
+						'label-message' => 'createwiki-label-reason',
+						'cssclass' => 'createwiki-infuse',
+						'section' => 'edit',
+					],
 					'visibility' => [
 						'type' => 'check',
-						'label-message' => 'requestwikiqueue-request-label-visibility',
+						'label-message' => 'revdelete-legend',
 						'options' => array_flip( $visibilityOptions ),
 						'default' => ($request->visibility != 0) ? 1 : 0,
 						'cssclass' => 'createwiki-infuse',
@@ -168,15 +173,10 @@ class RequestWikiRequestViewer {
 					],
 					'visibility-options' => [
 						'type' => 'radio',
-						'label-message' => 'requestwikiqueue-request-label-visibility',
+						'label-message' => 'revdelete-suppress-text',
 						'hide-if' => [ '!==', 'wpvisibility', '1' ],
 						'options' => array_flip( $visibilityOptions ),
 						'default' => $request->visibility,
-						'cssclass' => 'createwiki-infuse',
-						'section' => 'edit',
-					],
-					'reason' => [
-						'label-message' => 'createwiki-label-reason',
 						'cssclass' => 'createwiki-infuse',
 						'section' => 'edit',
 					],
@@ -432,7 +432,16 @@ class RequestWikiRequestViewer {
 			}
 		}
 
-		$out->addHTML( Html::successBox( wfMessage( 'requestwiki-edit-success' )->escaped() ) );
+		$out->addHTML(
+			Html::successBox(
+				Html::element(
+					'p',
+					[],
+					$this->msg( 'requestwiki-edit-success' )->escaped()
+				),
+				'mw-notify-success'
+			)
+		);
 
 		return true;
 	}
