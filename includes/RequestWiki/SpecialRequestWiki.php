@@ -153,7 +153,7 @@ class SpecialRequestWiki extends FormSpecialPage {
 		if ( $status === false ) {
 			if ( $err !== '' ) {
 				$out->addHTML(
-					Html::successBox(
+					Html::errorBox(
 						Html::element(
 							'p',
 							[],
@@ -184,7 +184,7 @@ class SpecialRequestWiki extends FormSpecialPage {
 			$requestID = $request->save();
 		} catch ( Exception $e ) {
 			$out->addHTML(
-				Html::successBox(
+				Html::errorBox(
 					Html::element(
 						'p',
 						[],
