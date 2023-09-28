@@ -136,6 +136,18 @@ class RequestWikiRequestViewer {
 
 				$wmError = $wm->checkDatabaseName( $request->dbname );
 
+				if ( $wmError ) {
+					$formDescriptor['submit-error-info'] = [
+						'type' => 'info',
+						'section' => 'edit',
+						'default' => $wmError,
+						'raw' => true,
+					];
+
+					// We don't want to be able to approve it if the database is not valid
+					unset( $formDescriptor['submission-action']['options-messages']['requestwikiqueue-approve'] );
+				}
+
 				$formDescriptor += [
 					'info-submission' => [
 						'type' => 'info',
@@ -185,21 +197,9 @@ class RequestWikiRequestViewer {
 					$formDescriptor['reason']['type'] = 'textarea';
 					$formDescriptor['reason']['rows'] = 4;
 				}
-
-				if ( $wmError ) {
-					$formDescriptor['submit-error-info'] = [
-						'type' => 'info',
-						'section' => 'edit',
-						'default' => $wmError,
-						'raw' => true,
-					];
-
-					// We don't want to be able to approve it if the database is not valid
-					unset( $formDescriptor['submission-action']['options-messages']['requestwikiqueue-approve'] );
-				}
-
-				$context->getOutput()->addHTML( '<hr />' );
 			}
+
+			$context->getOutput()->addHTML( '<hr />' );
 
 			// For wiki requesters
 			$formDescriptor += [
