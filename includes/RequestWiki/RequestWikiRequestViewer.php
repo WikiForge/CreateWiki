@@ -49,6 +49,15 @@ class RequestWikiRequestViewer {
 
 			return [];
 		}
+		if ( $userR->getId() == $request->requester->getId() && $request->getStatus() == 'inreview' ) {
+			$formDescriptor = [
+				'requesterpendinginfo' => [
+					'label-message' => 'requestwikiqueue-request-label-sitename',
+					'type' => 'info',
+					'section' => 'request',
+				],
+			];
+		}
 
 		$formDescriptor = [
 			'sitename' => [
