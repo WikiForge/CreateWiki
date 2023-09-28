@@ -305,7 +305,7 @@ class RequestWikiRequestViewer {
 
 				$formDescriptor['edit-migration-type'] = [
 					'type' => 'radio',
-					'option-messages' => [
+					'options-messages' => [
 						'requestwiki-option-migration-fork' => 'fork',
 						'requestwiki-option-migration-migrate' => 'migrate',
 					],
@@ -393,8 +393,16 @@ class RequestWikiRequestViewer {
 		$user = $form->getUser();
 
 		if ( !$user->isRegistered() ) {
-			$out->addHTML( Html::errorBox( wfMessage( 'exception-nologin-text' )->parse() ) );
-
+			$out->addHTML(
+				Html::warningBox(
+					Html::element(
+						'p',
+						[],
+						$this->msg( 'exception-nologin-text' )->parse()
+					),
+					'mw-notify-error'
+				)
+			);
 			return false;
 		} elseif ( isset( $formData['submit-comment'] ) ) {
 			$request->addComment( $formData['comment'], $user );
@@ -405,7 +413,16 @@ class RequestWikiRequestViewer {
 
 			if ( $status === false ) {
 				if ( $err !== '' ) {
-					$out->addHTML( Html::errorBox( wfMessage( 'createwiki-error-' . $err )->parse() ) );
+					$out->addHTML(
+						Html::warningBox(
+							Html::element(
+								'p',
+								[],
+								wfMessage( 'createwiki-error-' . $err )->parse()
+							),
+							'mw-notify-error'
+						)
+					);
 				}
 
 				return false;
