@@ -371,19 +371,25 @@ class WikiRequest {
 	 * @return boolean true subdomain is valid and accepted, false otherwise
 	 */
 	public function parseSubdomain( string $subdomain, string &$err = '' ) {
+		if ( isset( $alldata['submit-comment'] ) || ( isset( $alldata['submit-handle'] ) && $alldata['submission-action'] !== 'create' ) ) {
+			return true;
+		}
+
 		$subdomain = strtolower( $subdomain );
+		if ( strpos( $subdomain, $this->config->get( 'CreateWikiSubdomain' ) ) !== false ) {
+			$subdomain = str_replace( '.' . $this->config->get( 'CreateWikiSubdomain' ), '', $subdomain );
+		}
 
 		$disallowedSubdomains = CreateWikiRegexConstraint::regexFromArrayOrString(
 			$this->config->get( 'CreateWikiDisallowedSubdomains' ), '/^(', ')+$/',
 			'CreateWikiDisallowedSubdomains'
 		);
 
-		if ( strpos( $subdomain, $this->config->get( 'CreateWikiSubdomain' ) ) !== false ) {
-			$subdomain = str_replace( '.' . $this->config->get( 'CreateWikiSubdomain' ), '', $subdomain );
-		}
-
+		$database = $subdomain . $this->config->get( 'CreateWikiDatabaseSuffix' );
+		if ( in_array( $database, $this->config->get( 'LocalDatabases' ) ) ) {
+			$err = 'subdomaintaken';
 		// Make the subdomain a dbname
-		if ( !ctype_alnum( $subdomain ) ) {
+		} elseif ( !ctype_alnum( $subdomain ) ) {
 			$err = 'notalnum';
 
 			return false;
@@ -398,5 +404,4 @@ class WikiRequest {
 			return true;
 		}
 	}
-
 }
