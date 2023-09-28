@@ -197,8 +197,6 @@ class RequestWikiRequestViewer {
 					// We don't want to be able to approve it if the database is not valid
 					unset( $formDescriptor['submission-action']['options-messages']['requestwikiqueue-approve'] );
 				}
-
-				$out->addHTML( '<hr />' );
 			}
 
 			// For wiki requesters
