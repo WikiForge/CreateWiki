@@ -375,7 +375,7 @@ class RequestWikiRequestViewer {
 		} catch ( Exception $e ) {
 			$context->getOutput()->addHTML( Html::errorBox( wfMessage( 'requestwiki-unknown' )->escaped() ) );
 
-			return;
+			return [];
 		}
 
 		$formDescriptor = $this->getFormDescriptor( $request, $context );
