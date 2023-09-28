@@ -137,7 +137,7 @@ class RequestWikiRequestViewer {
 				$wmError = $wm->checkDatabaseName( $request->dbname );
 
 				if ( $wmError ) {
-					$context->getOutput()->addHTML( Html::errorBox( wfMessage( '{$wmError}' )->escaped() ) );
+					$context->getOutput()->addHTML( Html::errorBox( wfMessage( $wmError )->escaped() ) );
 
 					// We don't want to be able to approve it if the database is not valid
 					unset( $formDescriptor['submission-action']['options-messages']['requestwikiqueue-approve'] );
