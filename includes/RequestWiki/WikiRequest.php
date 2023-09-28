@@ -388,6 +388,8 @@ class WikiRequest {
 		$database = $subdomain . $this->config->get( 'CreateWikiDatabaseSuffix' );
 		if ( in_array( $database, $this->config->get( 'LocalDatabases' ) ) ) {
 			$err = 'subdomaintaken';
+
+			return false;
 		// Make the subdomain a dbname
 		} elseif ( !ctype_alnum( $subdomain ) ) {
 			$err = 'notalnum';
