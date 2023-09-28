@@ -137,7 +137,7 @@ class RequestWikiRequestViewer {
 				$wmError = $wm->checkDatabaseName( $request->dbname );
 
 				if ( $wmError ) {
-					$context->getOutput()->addHTML( Html::errorBox( wfMessage( $wmError )->escaped() ) );
+					$context->getOutput()->addHTML( Html::errorBox( $wmError ) );
 
 					// We don't want to be able to approve it if the database is not valid
 					unset( $formDescriptor['submission-action']['options-messages']['requestwikiqueue-approve'] );
@@ -162,11 +162,20 @@ class RequestWikiRequestViewer {
 						'section' => 'edit',
 					],
 					'visibility' => [
-						'type' => 'select',
+						'type' => 'check',
 						'label-message' => 'requestwikiqueue-request-label-visibility',
 						'options' => array_flip( $visibilityOptions ),
+						'default' => ($request->visibility != 0) ? 1 : 0,
+						'cssclass' => 'createwiki-infuse',
+						'section' => 'edit',
+					],
+					'visibility-options' => [
+						'type' => 'radio',
+						'label-message' => 'requestwikiqueue-request-label-visibility',
+						'hide-if' => [ '!==', 'wpvisibility', '1' ],
+						'options' => array_flip( $visibilityOptions ),
 						'default' => $request->visibility,
-							'cssclass' => 'createwiki-infuse',
+						'cssclass' => 'createwiki-infuse',
 						'section' => 'edit',
 					],
 					'reason' => [
@@ -192,9 +201,15 @@ class RequestWikiRequestViewer {
 					$formDescriptor['reason']['type'] = 'textarea';
 					$formDescriptor['reason']['rows'] = 4;
 				}
-			}
 
-			$context->getOutput()->addHTML( '<hr />' );
+				$formDescriptor += [
+					'info-submission' => [
+						'type' => 'info',
+						'default' => wfMessage( 'requestwikiqueue-request-info-review' )->text(),
+						'section' => 'edit',
+					],
+				];
+			}
 
 			// For wiki requesters
 			$formDescriptor += [
