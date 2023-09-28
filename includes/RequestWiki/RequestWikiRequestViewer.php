@@ -153,7 +153,7 @@ class RequestWikiRequestViewer {
 					'info-submission' => [
 						'type' => 'info',
 						'default' => wfMessage( 'requestwikiqueue-request-info-submission' )->text(),
-						'section' => 'edit',
+						'section' => 'review',
 					],
 					'submission-action' => [
 						'type' => 'radio',
@@ -165,12 +165,12 @@ class RequestWikiRequestViewer {
 						],
 						'default' => $request->getStatus(),
 						'cssclass' => 'createwiki-infuse',
-						'section' => 'edit',
+						'section' => 'review',
 					],
 					'reason' => [
 						'label-message' => 'createwiki-label-reason',
 						'cssclass' => 'createwiki-infuse',
-						'section' => 'edit',
+						'section' => 'review',
 					],
 					'visibility' => [
 						'type' => 'check',
@@ -178,7 +178,7 @@ class RequestWikiRequestViewer {
 						'options' => array_flip( $visibilityOptions ),
 						'default' => ($request->visibility != 0) ? 1 : 0,
 						'cssclass' => 'createwiki-infuse',
-						'section' => 'edit',
+						'section' => 'review',
 					],
 					'visibility-options' => [
 						'type' => 'radio',
@@ -187,12 +187,12 @@ class RequestWikiRequestViewer {
 						'options' => array_flip( $visibilityOptions ),
 						'default' => $request->visibility,
 						'cssclass' => 'createwiki-infuse',
-						'section' => 'edit',
+						'section' => 'review',
 					],
 					'submit-handle' => [
 						'type' => 'submit',
 						'default' => wfMessage( 'htmlform-submit' )->text(),
-						'section' => 'edit',
+						'section' => 'review',
 						],
 				];
 
@@ -217,7 +217,7 @@ class RequestWikiRequestViewer {
 					'info-submission' => [
 						'type' => 'info',
 						'default' => wfMessage( 'requestwikiqueue-request-info-review' )->text(),
-						'section' => 'edit',
+						'section' => 'review',
 					],
 				];
 			}
@@ -238,14 +238,14 @@ class RequestWikiRequestViewer {
 				'edit-sitename' => [
 					'label-message' => 'requestwikiqueue-request-label-sitename',
 					'type' => 'text',
-					'section' => 'edit',
+					'section' => 'review',
 					'required' => true,
 					'default' => (string)$request->sitename,
 				],
 				'edit-url' => [
 					'label-message' => 'requestwikiqueue-request-label-url',
 					'type' => 'text',
-					'section' => 'edit',
+					'section' => 'review',
 					'required' => true,
 					'default' => (string)$request->url,
 				],
@@ -254,12 +254,12 @@ class RequestWikiRequestViewer {
 					'type' => 'language',
 					'default' => (string)$request->language,
 					'cssclass' => 'createwiki-infuse',
-					'section' => 'edit',
+					'section' => 'review',
 				],
 				'edit-description' => [
 					'label-message' => 'requestwikiqueue-request-header-requestercomment',
 					'type' => 'textarea',
-					'section' => 'edit',
+					'section' => 'review',
 					'rows' => 4,
 					'required' => true,
 					'default' => (string)$request->description,
@@ -274,7 +274,7 @@ class RequestWikiRequestViewer {
 					'options' => $this->config->get( 'CreateWikiCategories' ),
 					'default' => (string)$request->category,
 					'cssclass' => 'createwiki-infuse',
-					'section' => 'edit',
+					'section' => 'review',
 				];
 			}
 
@@ -283,7 +283,7 @@ class RequestWikiRequestViewer {
 					'type' => 'check',
 					'label-message' => 'requestwiki-label-private',
 					'default' => $request->private,
-					'section' => 'edit',
+					'section' => 'review',
 				];
 			}
 
@@ -292,7 +292,7 @@ class RequestWikiRequestViewer {
 					'type' => 'check',
 					'label-message' => 'requestwiki-label-bio',
 					'default' => $request->bio,
-					'section' => 'edit',
+					'section' => 'review',
 				];
 			}
 
@@ -301,7 +301,7 @@ class RequestWikiRequestViewer {
 					'type' => 'check',
 					'label-message' => 'requestwiki-label-migration',
 					'default' => $request->migration,
-					'section' => 'edit',
+					'section' => 'review',
 				];
 
 				$formDescriptor['edit-migration-location'] = [
@@ -309,7 +309,7 @@ class RequestWikiRequestViewer {
 					'label-message' => 'requestwiki-label-migration-location',
 					'hide-if' => [ '!==', 'wpedit-migration', '1' ],
 					'default' => $request->migrationlocation,
-					'section' => 'edit',
+					'section' => 'review',
 				];
 
 				$formDescriptor['edit-migration-type'] = [
@@ -320,7 +320,7 @@ class RequestWikiRequestViewer {
 					],
 					'hide-if' => [ '!==', 'wpedit-migration', '1' ],
 					'default' => $request->migrationtype,
-					'section' => 'edit',
+					'section' => 'review',
 				];
 
 				$formDescriptor['edit-migration-details'] = [
@@ -328,7 +328,7 @@ class RequestWikiRequestViewer {
 					'label-message' => 'requestwiki-label-migration-details',
 					'hide-if' => [ '!==', 'wpedit-migration', '1' ],
 					'default' => $request->migrationdetails,
-					'section' => 'edit',
+					'section' => 'review',
 				];
 			}
 
@@ -339,14 +339,14 @@ class RequestWikiRequestViewer {
 					'options' => $this->config->get( 'CreateWikiPurposes' ),
 					'default' => trim( $request->purpose ),
 					'cssclass' => 'createwiki-infuse',
-					'section' => 'edit',
+					'section' => 'review',
 				];
 			}
 
 			$formDescriptor['submit-edit'] = [
 				'type' => 'submit',
 				'default' => wfMessage( 'requestwikiqueue-request-label-edit-wiki' )->text(),
-				'section' => 'edit',
+				'section' => 'review',
 			];
 		}
 
