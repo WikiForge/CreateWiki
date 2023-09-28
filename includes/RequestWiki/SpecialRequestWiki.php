@@ -36,6 +36,10 @@ class SpecialRequestWiki extends FormSpecialPage {
 
 		$this->checkExecutePermissions( $this->getUser() );
 
+		if ( !$this->getUser()->isEmailConfirmed() ) {
+			throw new ErrorPageError( 'requestwiki', 'requestwiki-emailnotconfirmed' );
+		}
+
 		$out->addModules( [ 'mediawiki.special.userrights' ] );
 		$out->addModuleStyles( 'mediawiki.notification.convertmessagebox.styles' );
 
