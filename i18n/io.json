@@ -47,7 +47,7 @@
 	"requestwikiqueue-approve": "Aprobar",
 	"requestwikiqueue-comments": "Demandar komenti",
 	"requestwikiqueue-decline": "Refuzar",
-	"requestwikiqueue-edit": "Modifikar demando",
+	"requestwikiqueue-review": "Modifikar demando",
 	"requestwikiqueue-handle": "Administrar demando",
 	"requestwikiqueue-pager-status-approved": "aprobita",
 	"requestwikiqueue-pager-status-declined": "refuzita",
