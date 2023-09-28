@@ -117,6 +117,91 @@ class RequestWikiRequestViewer {
 		}
 
 		if ( $permissionManager->userHasRight( $userR, 'createwiki' ) && !$userR->getBlock() || $userR->getId() == $request->requester->getId() ) {
+
+			if ( $permissionManager->userHasRight( $userR, 'createwiki' ) && !$userR->getBlock() ) {
+				$visibilityOptions = [
+					0 => wfMessage( 'requestwikiqueue-request-label-visibility-all' )->text(),
+					1 => wfMessage( 'requestwikiqueue-request-label-visibility-hide' )->text(),
+				];
+
+				if ( $permissionManager->userHasRight( $userR, 'delete' ) ) {
+					$visibilityOptions[2] = wfMessage( 'requestwikiqueue-request-label-visibility-delete' )->text();
+				}
+
+				if ( $permissionManager->userHasRight( $userR, 'suppressrevision' ) ) {
+					$visibilityOptions[3] = wfMessage( 'requestwikiqueue-request-label-visibility-oversight' )->text();
+				}
+
+				$wm = new WikiManager( $request->dbname, $this->hookRunner );
+
+				$wmError = $wm->checkDatabaseName( $request->dbname );
+
+				$formDescriptor += [
+					'info-submission' => [
+						'type' => 'info',
+						'default' => wfMessage( 'requestwikiqueue-request-info-submission' )->text(),
+						'section' => 'edit',
+					],
+					'submission-action' => [
+						'type' => 'select',
+						'label-message' => 'requestwikiqueue-request-label-action',
+						'options-messages' => [
+							'requestwikiqueue-approve' => 'approve',
+							'requestwikiqueue-decline' => 'decline',
+								'requestwikiqueue-onhold' => 'onhold',
+						],
+						'default' => $request->getStatus(),
+						'cssclass' => 'createwiki-infuse',
+						'section' => 'edit',
+					],
+					'visibility' => [
+						'type' => 'select',
+						'label-message' => 'requestwikiqueue-request-label-visibility',
+						'options' => array_flip( $visibilityOptions ),
+						'default' => $request->visibility,
+							'cssclass' => 'createwiki-infuse',
+						'section' => 'edit',
+					],
+					'reason' => [
+						'label-message' => 'createwiki-label-reason',
+						'cssclass' => 'createwiki-infuse',
+						'section' => 'edit',
+					],
+					'submit-handle' => [
+						'type' => 'submit',
+						'default' => wfMessage( 'htmlform-submit' )->text(),
+						'section' => 'edit',
+						],
+				];
+
+				if ( $this->config->get( 'CreateWikiCannedResponses' ) ) {
+					$formDescriptor['reason']['type'] = 'selectorother';
+					$formDescriptor['reason']['options'] = $this->config->get( 'CreateWikiCannedResponses' );
+
+					$formDescriptor['reason']['default'] = HTMLFormField::flattenOptions(
+						$this->config->get( 'CreateWikiCannedResponses' )
+					)[0];
+				} else {
+					$formDescriptor['reason']['type'] = 'textarea';
+					$formDescriptor['reason']['rows'] = 4;
+				}
+
+				if ( $wmError ) {
+					$formDescriptor['submit-error-info'] = [
+						'type' => 'info',
+						'section' => 'edit',
+						'default' => $wmError,
+						'raw' => true,
+					];
+
+					// We don't want to be able to approve it if the database is not valid
+					unset( $formDescriptor['submission-action']['options-messages']['requestwikiqueue-approve'] );
+				}
+
+				$out->addHTML( '<hr />' );
+			}
+
+			// For wiki requesters
 			$formDescriptor += [
 				'comment' => [
 					'type' => 'textarea',
@@ -242,87 +327,6 @@ class RequestWikiRequestViewer {
 				'default' => wfMessage( 'requestwikiqueue-request-label-edit-wiki' )->text(),
 				'section' => 'edit',
 			];
-		}
-
-		if ( $permissionManager->userHasRight( $userR, 'createwiki' ) && !$userR->getBlock() ) {
-			$visibilityOptions = [
-				0 => wfMessage( 'requestwikiqueue-request-label-visibility-all' )->text(),
-				1 => wfMessage( 'requestwikiqueue-request-label-visibility-hide' )->text(),
-			];
-
-			if ( $permissionManager->userHasRight( $userR, 'delete' ) ) {
-				$visibilityOptions[2] = wfMessage( 'requestwikiqueue-request-label-visibility-delete' )->text();
-			}
-
-			if ( $permissionManager->userHasRight( $userR, 'suppressrevision' ) ) {
-				$visibilityOptions[3] = wfMessage( 'requestwikiqueue-request-label-visibility-oversight' )->text();
-			}
-
-			$wm = new WikiManager( $request->dbname, $this->hookRunner );
-
-			$wmError = $wm->checkDatabaseName( $request->dbname );
-
-			$formDescriptor += [
-				'info-submission' => [
-					'type' => 'info',
-					'default' => wfMessage( 'requestwikiqueue-request-info-submission' )->text(),
-					'section' => 'handle',
-				],
-				'submission-action' => [
-					'type' => 'select',
-					'label-message' => 'requestwikiqueue-request-label-action',
-					'options-messages' => [
-						'requestwikiqueue-approve' => 'approve',
-						'requestwikiqueue-decline' => 'decline',
-						'requestwikiqueue-onhold' => 'onhold',
-					],
-					'default' => $request->getStatus(),
-					'cssclass' => 'createwiki-infuse',
-					'section' => 'handle',
-				],
-				'visibility' => [
-					'type' => 'select',
-					'label-message' => 'requestwikiqueue-request-label-visibility',
-					'options' => array_flip( $visibilityOptions ),
-					'default' => $request->visibility,
-					'cssclass' => 'createwiki-infuse',
-					'section' => 'handle',
-				],
-				'reason' => [
-					'label-message' => 'createwiki-label-reason',
-					'cssclass' => 'createwiki-infuse',
-					'section' => 'handle',
-				],
-				'submit-handle' => [
-					'type' => 'submit',
-					'default' => wfMessage( 'htmlform-submit' )->text(),
-					'section' => 'handle',
-				],
-			];
-
-			if ( $this->config->get( 'CreateWikiCannedResponses' ) ) {
-				$formDescriptor['reason']['type'] = 'selectorother';
-				$formDescriptor['reason']['options'] = $this->config->get( 'CreateWikiCannedResponses' );
-
-				$formDescriptor['reason']['default'] = HTMLFormField::flattenOptions(
-					$this->config->get( 'CreateWikiCannedResponses' )
-				)[0];
-			} else {
-				$formDescriptor['reason']['type'] = 'textarea';
-				$formDescriptor['reason']['rows'] = 4;
-			}
-
-			if ( $wmError ) {
-				$formDescriptor['submit-error-info'] = [
-					'type' => 'info',
-					'section' => 'handle',
-					'default' => $wmError,
-					'raw' => true,
-				];
-
-				// We don't want to be able to approve it if the database is not valid
-				unset( $formDescriptor['submission-action']['options-messages']['requestwikiqueue-approve'] );
-			}
 		}
 
 		return $formDescriptor;
