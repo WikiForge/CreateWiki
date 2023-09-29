@@ -3,6 +3,7 @@
 namespace WikiForge\CreateWiki\RequestWiki;
 
 use Config;
+use ErrorPageError;
 use Exception;
 use ExtensionRegistry;
 use FormSpecialPage;
