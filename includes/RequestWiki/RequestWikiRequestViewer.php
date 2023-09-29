@@ -315,9 +315,11 @@ class RequestWikiRequestViewer {
 
 				$formDescriptor['edit-migration-type'] = [
 					'type' => 'radio',
+					'label-message' => 'requestwiki-label-migration-type',
 					'options-messages' => [
 						'requestwiki-option-migration-fork' => 'fork',
 						'requestwiki-option-migration-migrate' => 'migrate',
+						'requestwiki-option-migration-servermigrate' => 'servermigrate',
 					],
 					'hide-if' => [ '!==', 'wpedit-migration', '1' ],
 					'default' => $request->migrationtype,
