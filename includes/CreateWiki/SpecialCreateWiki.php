@@ -28,10 +28,16 @@ class SpecialCreateWiki extends FormSpecialPage {
 		$request = $this->getRequest();
 
 		$formDescriptor = [
-			'dbname' => [
-				'label-message' => 'createwiki-label-dbname',
-				'type' => 'text',
+			'subdomain' => [
+				'type' => 'textwithbutton',
+				'buttontype' => 'button',
+				'buttonflags' => [],
+				'buttonid' => 'inline-subdomain',
+				'buttondefault' => '.' . $this->config->get( 'CreateWikiSubdomain' ),
 				'default' => $request->getVal( 'wpdbname' ) ?: $par,
+				'label-message' => 'requestwiki-label-siteurl',
+				'placeholder-message' => 'requestwiki-placeholder-siteurl',
+				'help-message' => 'requestwiki-help-siteurl',
 				'required' => true,
 				'validation-callback' => [ $this, 'validateDBname' ],
 			],
@@ -115,7 +121,17 @@ class SpecialCreateWiki extends FormSpecialPage {
 		$check = $wm->checkDatabaseName( $DBname );
 
 		if ( $check ) {
-			return $check;
+			$this->getOutput()->addHTML(
+				Html::warningBox(
+					Html::element(
+						'p',
+						[],
+						$check
+					),
+					'mw-notify-error'
+				)
+			);
+			return false;
 		}
 
 		return true;
