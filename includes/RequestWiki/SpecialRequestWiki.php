@@ -153,7 +153,7 @@ class SpecialRequestWiki extends FormSpecialPage {
 			'validation-callback' => [ $this, 'isValidReason' ],
 		];
 
-		if ( ExtensionRegistry::getInstance()->isLoaded( 'WikiDiscover' ) && $config->get( 'WikiDiscoverUseDescriptions' ) && $config->get( 'RequestWikiUseDescriptions' ) ) {
+		if ( ExtensionRegistry::getInstance()->isLoaded( 'WikiDiscover' ) && $this->config->get( 'WikiDiscoverUseDescriptions' ) && $this->config->get( 'RequestWikiUseDescriptions' ) ) {
 			$formDescriptor['public-description'] = [
 				'type' => 'textarea',
 				'rows' => 4,
