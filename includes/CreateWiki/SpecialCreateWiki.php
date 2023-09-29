@@ -27,6 +27,8 @@ class SpecialCreateWiki extends FormSpecialPage {
 		$par = $this->par;
 		$request = $this->getRequest();
 
+		$this->getOutput()->addModules( [ 'mediawiki.special.userrights' ] );
+
 		$formDescriptor = [
 			'subdomain' => [
 				'type' => 'textwithbutton',
