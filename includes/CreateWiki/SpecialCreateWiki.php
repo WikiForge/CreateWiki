@@ -121,6 +121,8 @@ class SpecialCreateWiki extends FormSpecialPage {
 					)
 				);
 			}
+
+			return false;
 		}
 
 		$wm = new WikiManager( $formData['subdomain'], $this->hookRunner );
