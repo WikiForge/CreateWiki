@@ -27,7 +27,6 @@ class SpecialCreateWiki extends FormSpecialPage {
 	protected function getFormFields() {
 		$par = $this->par;
 		$request = $this->getRequest();
-		$wikiRequest = new WikiRequest;
 
 		$formDescriptor = [
 			'subdomain' => [
