@@ -4,6 +4,7 @@ namespace WikiForge\CreateWiki\RequestWiki;
 
 use Config;
 use Exception;
+use ExtensionRegistry;
 use Html;
 use HTMLForm;
 use HTMLFormField;
@@ -338,6 +339,18 @@ class RequestWikiRequestViewer {
 					'label-message' => 'requestwiki-label-purpose',
 					'options' => $this->config->get( 'CreateWikiPurposes' ),
 					'default' => trim( $request->purpose ),
+					'cssclass' => 'createwiki-infuse',
+					'section' => 'review',
+				];
+			}
+			if ( ExtensionRegistry::getInstance()->isLoaded( 'WikiDiscover' ) && $this->config->get( 'WikiDiscoverUseDescriptions' ) && $this->config->get( 'RequestWikiUseDescriptions' ) ) {
+				$formDescriptor['public-description'] = [
+					'type' => 'textarea',
+					'rows' => 4,
+					'default' => trim( $request->publicdescription ),
+					'maxlength' => $this->config->get( 'WikiDiscoverDescriptionMaxLength' ) ?? false,
+					'label-message' => 'requestwiki-label-public-description',
+					'help-message' => 'requestwiki-help-public-description',
 					'cssclass' => 'createwiki-infuse',
 					'section' => 'review',
 				];
