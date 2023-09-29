@@ -64,7 +64,7 @@
 	"requestwikiqueue-approve": "Godkänn",
 	"requestwikiqueue-comments": "Begäranskommentarer",
 	"requestwikiqueue-decline": "Neka",
-	"requestwikiqueue-edit": "Redigeringsbegäran",
+	"requestwikiqueue-review": "Redigeringsbegäran",
 	"requestwikiqueue-handle": "Hantera begäran",
 	"requestwikiqueue-pager-status-approved": "godkända",
 	"requestwikiqueue-pager-status-declined": "avböjda",

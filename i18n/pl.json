@@ -60,7 +60,7 @@
 	"requestwikiqueue-approve": "Zatwierdź",
 	"requestwikiqueue-comments": "Komentarze wniosku",
 	"requestwikiqueue-decline": "Odrzuć",
-	"requestwikiqueue-edit": "Edytuj wniosek",
+	"requestwikiqueue-review": "Edytuj wniosek",
 	"requestwikiqueue-handle": "Rozwiąż wniosek",
 	"requestwikiqueue-pager-status-approved": "zaakceptowano",
 	"requestwikiqueue-pager-status-declined": "odrzucono",
