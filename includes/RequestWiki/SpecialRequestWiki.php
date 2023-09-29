@@ -147,6 +147,7 @@ class SpecialRequestWiki extends FormSpecialPage {
 			'type' => 'textarea',
 			'rows' => 4,
 			'minlength' => $this->config->get( 'RequestWikiMinimumLength' ) ?? false,
+			'maxlength' => $this->config->get( 'RequestWikiMaximumLength' ) ?? false,
 			'label-message' => 'createwiki-label-reason',
 			'help-message' => 'createwiki-help-reason',
 			'required' => true,
@@ -157,6 +158,7 @@ class SpecialRequestWiki extends FormSpecialPage {
 			$formDescriptor['public-description'] = [
 				'type' => 'textarea',
 				'rows' => 4,
+				'maxlength' => $this->config->get( 'WikiDiscoverDescriptionMaxLength' ) ?? false,
 				'label-message' => 'requestwiki-label-public-description',
 				'help-message' => 'requestwiki-help-public-description',
 				'required' => true,
