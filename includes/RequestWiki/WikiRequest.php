@@ -78,6 +78,7 @@ class WikiRequest {
 			$this->migrationlocation = $dbRequest->cw_migrationlocation;
 			$this->migrationtype = $dbRequest->cw_migrationtype;
 			$this->migrationdetails = $dbRequest->cw_migrationdetails;
+			$this->publicdescription = $dbRequest->publicdescription;
 			
 			$newDesc = explode( "\n", $dbRequest->cw_comment, 2 );
 			$purposeCheck = explode( ':', $newDesc[0], 2 );
@@ -180,6 +181,7 @@ class WikiRequest {
 				'language' => $this->language,
 				'private' => $this->private,
 				'category' => $this->category,
+				'description' => $this->publicdescription,
 				'requester' => $this->requester->getName(),
 				'creator' => $user->getName(),
 			];
