@@ -43,6 +43,7 @@ class SpecialCreateWiki extends FormSpecialPage {
 			],
 			'requester' => [
 				'label-message' => 'createwiki-label-requester',
+				'help-message' => 'createwiki-help-requester',
 				'type' => 'user',
 				'default' => $request->getVal( 'wprequester' ),
 				'exists' => true,
@@ -50,6 +51,7 @@ class SpecialCreateWiki extends FormSpecialPage {
 			],
 			'sitename' => [
 				'label-message' => 'createwiki-label-sitename',
+				'help-message' => 'createwiki-help-sitename',
 				'type' => 'text',
 				'default' => $request->getVal( 'wpsitename' ),
 				'size' => 20,
@@ -65,6 +67,7 @@ class SpecialCreateWiki extends FormSpecialPage {
 			$formDescriptor['private'] = [
 				'type' => 'check',
 				'label-message' => 'createwiki-label-private',
+				'help-message' => 'createwiki-help-private',
 			];
 		}
 
