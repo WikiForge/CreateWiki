@@ -8,7 +8,6 @@ use Html;
 use MediaWiki\MediaWikiServices;
 use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
 use WikiForge\CreateWiki\WikiManager;
-use WikiForge\CreateWiki\RequestWiki\WikiRequest;
 
 
 class SpecialCreateWiki extends FormSpecialPage {
@@ -28,6 +27,7 @@ class SpecialCreateWiki extends FormSpecialPage {
 	protected function getFormFields() {
 		$par = $this->par;
 		$request = $this->getRequest();
+		$wikiRequest = new WikiRequest;
 
 		$formDescriptor = [
 			'subdomain' => [
@@ -41,7 +41,7 @@ class SpecialCreateWiki extends FormSpecialPage {
 				'placeholder-message' => 'requestwiki-placeholder-siteurl',
 				'help-message' => 'requestwiki-help-siteurl',
 				'required' => true,
-				'validation-callback' => 'WikiForge\CreateWiki\RequestWiki\WikiRequest::parseSubdomain',
+				'validation-callback' => $wikiRequest->parseSubdomain(),
 			],
 			'requester' => [
 				'label-message' => 'createwiki-label-requester',
