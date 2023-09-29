@@ -41,7 +41,6 @@ class SpecialCreateWiki extends FormSpecialPage {
 				'placeholder-message' => 'requestwiki-placeholder-siteurl',
 				'help-message' => 'requestwiki-help-siteurl',
 				'required' => true,
-				'validation-callback' => $wikiRequest->parseSubdomain(),
 			],
 			'requester' => [
 				'label-message' => 'createwiki-label-requester',
@@ -106,11 +105,37 @@ class SpecialCreateWiki extends FormSpecialPage {
 			$category = 'uncategorized';
 		}
 
-		$wm = new WikiManager( $formData['dbname'], $this->hookRunner );
+		$request = new WikiRequest( $formData['subdomain'], $this->hookRunner );
+		$subdomain = strtolower( $formData['subdomain'] );
+		$err = '';
+
+		$status = $request->parseSubdomain( $subdomain, $err );
+		if ( $status === false ) {
+			if ( $err !== '' ) {
+				$this->getOutput()->addHTML(
+					Html::warningBox(
+						Html::element(
+							'p',
+							[],
+							$this->msg( 'createwiki-error-' . $err )->parse()
+						),
+						'mw-notify-error'
+					)
+				);
+			}
 
 		$wm->create( $formData['sitename'], $formData['language'], $private, $category, $formData['requester'], $this->getContext()->getUser()->getName(), $formData['reason'] );
 
-		$this->getOutput()->addHTML( Html::successBox( $this->msg( 'createwiki-success' )->escaped() ) );
+		$this->getOutput()->addHTML(
+					Html::successBox(
+						Html::element(
+							'p',
+							[],
+							$this->msg( 'createwiki-success' )->escaped()
+						),
+						'mw-notify-success'
+					)
+				);
 
 		return true;
 	}
