@@ -245,7 +245,7 @@ class SpecialRequestWiki extends FormSpecialPage {
 		$farmerLogEntry->publish( $farmerLogID );
 
 		// On successful request, redirect them to their request
-		header( 'Location: ' . FormSpecialPage::getTitleFor( 'RequestWikiQueue' )->getFullURL() . '/' . $idlink );
+		header( 'Location: ' . FormSpecialPage::getTitleFor( 'RequestWikiQueue' )->getFullURL() . '/' . $requestID );
 
 		return true;
 	}
