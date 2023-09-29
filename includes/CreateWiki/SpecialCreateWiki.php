@@ -41,7 +41,7 @@ class SpecialCreateWiki extends FormSpecialPage {
 				'placeholder-message' => 'requestwiki-placeholder-siteurl',
 				'help-message' => 'requestwiki-help-siteurl',
 				'required' => true,
-				'validation-callback' => WikiRequest::parseSubdomain,
+				'validation-callback' => 'WikiRequest::parseSubdomain',
 			],
 			'requester' => [
 				'label-message' => 'createwiki-label-requester',
