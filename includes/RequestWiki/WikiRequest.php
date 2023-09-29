@@ -32,6 +32,7 @@ class WikiRequest {
 	public $migrationtype;
 	public $migrationdetails;
 	public $purpose;
+	public $publicdescription;
 
 	private $id;
 	private $dbw;
