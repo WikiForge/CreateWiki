@@ -162,14 +162,14 @@ class RequestWikiRequestViewer {
 						'options-messages' => [
 							'requestwikiqueue-approve' => 'approve',
 							'requestwikiqueue-decline' => 'decline',
-								'requestwikiqueue-onhold' => 'onhold',
+							'requestwikiqueue-onhold' => 'onhold',
 						],
 						'default' => $request->getStatus(),
 						'cssclass' => 'createwiki-infuse',
 						'section' => 'review',
 					],
 					'reason' => [
-						'label-message' => 'createwiki-label-reason',
+						'label-message' => 'createwiki-label-statuschangecomment',
 						'cssclass' => 'createwiki-infuse',
 						'section' => 'review',
 					],
