@@ -38,7 +38,7 @@ class SpecialRequestWiki extends FormSpecialPage {
 		$this->checkExecutePermissions( $this->getUser() );
 
 		if ( !$this->getUser()->isEmailConfirmed() ) {
-			throw new ErrorPageError( 'requestwiki', 'requestwiki-emailnotconfirmed' );
+			throw new ErrorPageError( 'requestwiki', 'requestwiki-error-emailnotconfirmed' );
 		}
 
 		$out->addModules( [ 'mediawiki.special.userrights' ] );
@@ -61,8 +61,8 @@ class SpecialRequestWiki extends FormSpecialPage {
 				'buttonid' => 'inline-subdomain',
 				'buttondefault' => '.' . $this->config->get( 'CreateWikiSubdomain' ),
 				'label-message' => 'requestwiki-label-siteurl',
-				'placeholder-message' => 'requestwiki-placeholder-subdomain',
-				'help-message' => 'requestwiki-help-subdomain',
+				'placeholder-message' => 'requestwiki-placeholder-siteurl',
+				'help-message' => 'requestwiki-help-siteurl',
 				'required' => true,
 			],
 			'sitename' => [
@@ -157,8 +157,8 @@ class SpecialRequestWiki extends FormSpecialPage {
 			$formDescriptor['public-description'] = [
 				'type' => 'textarea',
 				'rows' => 4,
-				'label-message' => 'createwiki-label-public-description',
-				'help-message' => 'createwiki-help-public-description',
+				'label-message' => 'requestwiki-label-public-description',
+				'help-message' => 'requestwiki-help-public-description',
 				'required' => true,
 				'validation-callback' => [ $this, 'isValidReason' ],
 			];
