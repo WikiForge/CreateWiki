@@ -335,6 +335,7 @@ class WikiRequest {
 			'cw_migrationlocation' => $this->migrationlocation,
 			'cw_migrationtype' => $this->migrationtype,
 			'cw_migrationdetails' => $this->migrationdetails,
+			'cw_publicdescription' =>  $this->publicdescription,
 		];
 
 		$this->dbw->upsert(
