@@ -4,7 +4,8 @@
 		"Southparkfan",
 		"John Lewis",
 		"Paladox",
-		"Universal Omega"
+		"Universal Omega",
+		"Agent Isai"
 	],
 	"url": "https://github.com/WikiForge/CreateWiki",
 	"descriptionmsg": "createwiki-desc",
@@ -141,6 +142,11 @@
 		"remoteExtPath": "CreateWiki/modules"
 	},
 	"config": {
+		"CreateWiki": {
+			"description": "Boolean. Whether CreateWiki should be enabled or not.",
+			"public": true,
+			"value": true
+		},
 		"CreateWikiAIThreshold": {
 			"description": "Integer. Minimum percentage points for a request to be created when acceptable.",
 			"public": true,
@@ -150,11 +156,6 @@
 			"description": "Array. Regexes to never auto approve requests if their descriptions match.",
 			"public": true,
 			"value": []
-		},
-		"CreateWikiDisallowedSubdomains": {
-			"description": "String or array. Regex to match for disallowed subdomains.",
-			"public": true,
-			"value": "/ /"
 		},
 		"CreateWikiCannedResponses": {
 			"description": "Boolean. Array of default responses to give. If this is enabled, free-text options are removed.",
@@ -191,6 +192,16 @@
 			"public": true,
 			"value": "wiki"
 		},
+		"CreateWikiDisallowedSubdomains": {
+			"description": "String or array. Regex to match for disallowed subdomains.",
+			"public": true,
+			"value": "/ /"
+		},
+		"CreateWikiEnableManageInactiveWikis": {
+			"description": "Boolean. Should the manageInactiveWikis.php maintenance script be enabled? That script marks wikis as inactive, closed, or deleted per $wgCreateWikiStateDays.",
+			"public": true,
+			"value": false
+		},
 		"CreateWikiPersistentModelFile": {
 			"description": "String. Location to a file that can be overwritten to contain a persistent machine learning model.",
 			"public": true,
@@ -206,13 +217,8 @@
 				"deleted": 7
 			}
 		},
-		"CreateWikiEnableManageInactiveWikis": {
-			"description": "Boolean. Should the manageInactiveWikis.php maintenance script be enabled? That script marks wikis as inactive, closed, or deleted per $wgCreateWikiStateDays.",
-			"public": true,
-			"value": false
-		},
 		"CreateWikiGlobalWiki": {
-			"description": "String. Database name of the global wiki. (Where RequestWiki should be enabled and Special:CreateWiki available.)",
+			"description": "String. Database name of the global wiki (where RequestWiki should be enabled and Special:CreateWiki available).",
 			"public": true,
 			"value": ""
 		},
@@ -311,6 +317,11 @@
 			"public": true,
 			"value": false
 		},
+		"RequestWiki": {
+			"description": "Boolean. Whether RequestWiki should be enabled or not.",
+			"public": true,
+			"value": true
+		},
 		"RequestWikiDisablePrivateRequests": {
 			"description": "Boolean. Whether to disable the ability to request private wikis.",
 			"public": true,
@@ -323,6 +334,11 @@
 		},
 		"RequestWikiMigrationInquire": {
 			"description": "Boolean. Whether to ask additional questions about wiki migrations or not.",
+			"public": true,
+			"value": false
+		},
+		"RequestWikiUseDescriptions": {
+			"description": "Boolean. Whether to allow adding WikiDiscover descriptions from RequestWiki or not.",
 			"public": true,
 			"value": false
 		}
