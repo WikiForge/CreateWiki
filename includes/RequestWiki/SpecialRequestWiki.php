@@ -4,6 +4,7 @@ namespace WikiForge\CreateWiki\RequestWiki;
 
 use Config;
 use Exception;
+use ExtensionRegistry;
 use FormSpecialPage;
 use Html;
 use ManualLogEntry;
@@ -67,6 +68,7 @@ class SpecialRequestWiki extends FormSpecialPage {
 			'sitename' => [
 				'type' => 'text',
 				'label-message' => 'requestwiki-label-sitename',
+				'help-message' => 'requestwiki-help-sitename',
 				'required' => true,
 			],
 			'language' => [
@@ -89,6 +91,7 @@ class SpecialRequestWiki extends FormSpecialPage {
 			$formDescriptor['private'] = [
 				'type' => 'check',
 				'label-message' => 'requestwiki-label-private',
+				'help-message' => 'requestwiki-help-private',
 			];
 		}
 
@@ -96,6 +99,7 @@ class SpecialRequestWiki extends FormSpecialPage {
 			$formDescriptor['bio'] = [
 				'type' => 'check',
 				'label-message' => 'requestwiki-label-bio',
+				'help-message' => 'requestwiki-help-bio',
 			];
 		}
 
@@ -109,6 +113,8 @@ class SpecialRequestWiki extends FormSpecialPage {
 				'type' => 'text',
 				'hide-if' => [ '!==', 'wpmigration', '1' ],
 				'label-message' => 'requestwiki-label-migration-location',
+				'placeholder-message' => 'requestwiki-placeholder-migration-location',
+				'help-message' => 'requestwiki-help-migration-location',
 			];
 
 			$formDescriptor['migration-type'] = [
@@ -125,6 +131,7 @@ class SpecialRequestWiki extends FormSpecialPage {
 				'type' => 'textarea',
 				'hide-if' => [ '!==', 'wpmigration', '1' ],
 				'label-message' => 'requestwiki-label-migration-details',
+				'help-message' => 'requestwiki-help-migration-details',
 			];
 		}
 
@@ -145,6 +152,17 @@ class SpecialRequestWiki extends FormSpecialPage {
 			'required' => true,
 			'validation-callback' => [ $this, 'isValidReason' ],
 		];
+
+		if ( ExtensionRegistry::getInstance()->isLoaded( 'WikiDiscover' ) && $config->get( 'WikiDiscoverUseDescriptions' ) && $config->get( 'RequestWikiUseDescriptions' ) ) {
+			$formDescriptor['public-description'] = [
+				'type' => 'textarea',
+				'rows' => 4,
+				'label-message' => 'createwiki-label-public-description',
+				'help-message' => 'createwiki-help-public-description',
+				'required' => true,
+				'validation-callback' => [ $this, 'isValidReason' ],
+			];
+		}
 
 		return $formDescriptor;
 	}
@@ -179,6 +197,7 @@ class SpecialRequestWiki extends FormSpecialPage {
 		$request->private = $formData['private'] ?? 0;
 		$request->requester = $this->getUser();
 		$request->category = $formData['category'] ?? '';
+		$request->publicdescription = $formData['public-description'] ?? '';
 		$request->purpose = $formData['purpose'] ?? '';
 		$request->bio = $formData['bio'] ?? 0;
 		$request->migration = $formData['migration'] ?? 0;
@@ -222,7 +241,7 @@ class SpecialRequestWiki extends FormSpecialPage {
 		$farmerLogEntry->publish( $farmerLogID );
 
 		// On successful request, redirect them to their request
-		header( 'Location: ' . FormSpecialPage::getTitleFor( 'ManageWikiDefaultPermissions' )->getFullURL() . '/' . $idlink );
+		header( 'Location: ' . FormSpecialPage::getTitleFor( 'RequestWikiQueue' )->getFullURL() . '/' . $idlink );
 
 		return true;
 	}
