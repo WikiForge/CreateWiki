@@ -123,6 +123,7 @@ class SpecialCreateWiki extends FormSpecialPage {
 					)
 				);
 			}
+		}
 
 		$wm->create( $formData['sitename'], $formData['language'], $private, $category, $formData['requester'], $this->getContext()->getUser()->getName(), $formData['reason'] );
 
