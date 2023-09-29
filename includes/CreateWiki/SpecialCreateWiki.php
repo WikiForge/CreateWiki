@@ -8,6 +8,8 @@ use Html;
 use MediaWiki\MediaWikiServices;
 use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
 use WikiForge\CreateWiki\WikiManager;
+use WikiForge\CreateWiki\RequestWiki\WikiRequest;
+
 
 class SpecialCreateWiki extends FormSpecialPage {
 
@@ -28,12 +30,18 @@ class SpecialCreateWiki extends FormSpecialPage {
 		$request = $this->getRequest();
 
 		$formDescriptor = [
-			'dbname' => [
-				'label-message' => 'createwiki-label-dbname',
-				'type' => 'text',
+			'subdomain' => [
+				'type' => 'textwithbutton',
+				'buttontype' => 'button',
+				'buttonflags' => [],
+				'buttonid' => 'inline-subdomain',
+				'buttondefault' => '.' . $this->config->get( 'CreateWikiSubdomain' ),
 				'default' => $request->getVal( 'wpdbname' ) ?: $par,
+				'label-message' => 'requestwiki-label-siteurl',
+				'placeholder-message' => 'requestwiki-placeholder-siteurl',
+				'help-message' => 'requestwiki-help-siteurl',
 				'required' => true,
-				'validation-callback' => [ $this, 'validateDBname' ],
+				'validation-callback' => [ WikiRequest::class, 'parseSubdomain' ],
 			],
 			'requester' => [
 				'label-message' => 'createwiki-label-requester',
@@ -44,6 +52,7 @@ class SpecialCreateWiki extends FormSpecialPage {
 			],
 			'sitename' => [
 				'label-message' => 'createwiki-label-sitename',
+				'help-message' => 'requestwiki-help-sitename',
 				'type' => 'text',
 				'default' => $request->getVal( 'wpsitename' ),
 				'size' => 20,
@@ -59,6 +68,7 @@ class SpecialCreateWiki extends FormSpecialPage {
 			$formDescriptor['private'] = [
 				'type' => 'check',
 				'label-message' => 'createwiki-label-private',
+				'help-message' => 'requestwiki-help-private',
 			];
 		}
 
@@ -106,6 +116,7 @@ class SpecialCreateWiki extends FormSpecialPage {
 	}
 
 	public function validateDBname( $DBname, $allData ) {
+		$validatenew WikiRequest = $wikiRequest;
 		if ( $DBname === null ) {
 			return true;
 		}
