@@ -122,6 +122,7 @@ class SpecialRequestWiki extends FormSpecialPage {
 				'options-messages' => [
 					'requestwiki-option-migration-fork' => 'fork',
 					'requestwiki-option-migration-migrate' => 'migrate',
+					'requestwiki-option-migration-servermigrate' => 'servermigrate',
 				],
 				'hide-if' => [ '!==', 'wpmigration', '1' ],
 				'label-message' => 'requestwiki-label-migration-type',
@@ -158,7 +159,7 @@ class SpecialRequestWiki extends FormSpecialPage {
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'WikiDiscover' ) && $this->config->get( 'WikiDiscoverUseDescriptions' ) && $this->config->get( 'RequestWikiUseDescriptions' ) ) {
 			$formDescriptor['public-description'] = [
 				'type' => 'textarea',
-				'rows' => 4,
+				'rows' => 2,
 				'maxlength' => $this->config->get( 'WikiDiscoverDescriptionMaxLength' ) ?? false,
 				'label-message' => 'requestwiki-label-public-description',
 				'help-message' => 'requestwiki-help-public-description',
