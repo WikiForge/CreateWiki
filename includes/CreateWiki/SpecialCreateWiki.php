@@ -9,7 +9,6 @@ use MediaWiki\MediaWikiServices;
 use WikiForge\CreateWiki\Hooks\CreateWikiHookRunner;
 use WikiForge\CreateWiki\WikiManager;
 
-
 class SpecialCreateWiki extends FormSpecialPage {
 
 	/** @var Config */
@@ -104,7 +103,7 @@ class SpecialCreateWiki extends FormSpecialPage {
 			$category = 'uncategorized';
 		}
 
-		$request = new WikiRequest( $formData['subdomain'], $this->hookRunner );
+		$request = new \WikiForge\CreateWiki\RequestWiki\WikiRequest( null, $this->hookRunner );
 		$subdomain = strtolower( $formData['subdomain'] );
 		$err = '';
 
@@ -123,6 +122,8 @@ class SpecialCreateWiki extends FormSpecialPage {
 				);
 			}
 		}
+
+		$wm = new WikiManager( $formData['subdomain'], $this->hookRunner );
 
 		$wm->create( $formData['sitename'], $formData['language'], $private, $category, $formData['requester'], $this->getContext()->getUser()->getName(), $formData['reason'] );
 
