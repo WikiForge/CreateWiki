@@ -28,6 +28,7 @@
 	"createwiki-label-reason": "Describe the focus or purpose of this wiki:",
 	"createwiki-label-requester": "Requester:",
 	"createwiki-label-sitename": "Wiki name:",
+	"createwiki-label-statuschangecomment": "Additional commentary on this request:",
 	"createwiki-success": "The wiki was successfully created.",
 	"echo-category-title-wiki-creation": "Wiki creation",
 	"echo-category-title-request-comment": "Comment added to wiki request",
