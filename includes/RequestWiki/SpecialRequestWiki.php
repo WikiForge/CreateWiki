@@ -129,6 +129,7 @@ class SpecialRequestWiki extends FormSpecialPage {
 
 			$formDescriptor['migration-details'] = [
 				'type' => 'textarea',
+				'rows' => 4,
 				'hide-if' => [ '!==', 'wpmigration', '1' ],
 				'label-message' => 'requestwiki-label-migration-details',
 				'help-message' => 'requestwiki-help-migration-details',
