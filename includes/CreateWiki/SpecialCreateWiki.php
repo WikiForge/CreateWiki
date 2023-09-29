@@ -116,7 +116,6 @@ class SpecialCreateWiki extends FormSpecialPage {
 	}
 
 	public function validateDBname( $DBname, $allData ) {
-		$validatenew WikiRequest = $wikiRequest;
 		if ( $DBname === null ) {
 			return true;
 		}
