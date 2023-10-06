@@ -28,7 +28,7 @@ class SpecialCreateWiki extends FormSpecialPage {
 		$request = $this->getRequest();
 
 		$formDescriptor = [
-			'subdomain' => [
+			'dbname' => [
 				'type' => 'textwithbutton',
 				'buttontype' => 'button',
 				'buttonflags' => [],
