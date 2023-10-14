@@ -173,6 +173,7 @@ class SpecialRequestWiki extends FormSpecialPage {
 			$formDescriptor['agreement'] = [
 				'type' => 'check',
 				'label-message' => 'requestwiki-label-agreement',
+				'help-message' => 'requestwiki-help-agreement',
 				'required' => true,
 			];
 		}
