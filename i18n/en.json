@@ -69,6 +69,7 @@
 	"requestwiki-help-sitename": "This will be the wiki's name and will be the name of its 'Project' namespace.",
 	"requestwiki-help-siteurl": "This will be the wiki's URL. If you wish to setup a custom domain, you still need to select a WikiTide subdomain first. [[Special:MyLanguage/Custom domains|Click here for more information]].",
 	"requestwiki-label-bio": "This wiki's main subject(s) be about living people or real-life groups",
+	"requestwiki-label-language": "By requesting, I agree to this farm's terms and conditions.",
 	"requestwiki-label-language": "Language:",
 	"requestwiki-label-migration": "This wiki is migrating wiki hosts",
 	"requestwiki-label-migration-location": "Insert the URL of the original wiki",
