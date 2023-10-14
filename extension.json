@@ -322,6 +322,11 @@
 			"public": true,
 			"value": true
 		},
+		"RequestWikiConfirmAgreement": {
+			"description": "Boolean. Whether RequestWiki should require users to check a box to agree to farm terms.",
+			"public": true,
+			"value": false
+		},
 		"RequestWikiDisablePrivateRequests": {
 			"description": "Boolean. Whether to disable the ability to request private wikis.",
 			"public": true,
