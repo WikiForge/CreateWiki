@@ -169,6 +169,14 @@ class SpecialRequestWiki extends FormSpecialPage {
 			];
 		}
 
+		if ( $this->config->get( 'RequestWikiConfirmAgreement' ) ) {
+			$formDescriptor['agreement'] = [
+				'type' => 'check',
+				'label-message' => 'requestwiki-label-agreement',
+				'required' => true,
+			];
+		}
+
 		return $formDescriptor;
 	}
 
