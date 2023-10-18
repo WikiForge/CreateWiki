@@ -45,7 +45,7 @@ class SpecialRequestWiki extends FormSpecialPage {
 		$out->addModules( [ 'mediawiki.special.userrights' ] );
 		$out->addModuleStyles( 'mediawiki.notification.convertmessagebox.styles' );
 
-		$out->addWikiMsg( 'requestwiki-header', $customdomainurl );
+		$out->addWikiMsg( 'requestwiki-header' );
 
 		$form = $this->getForm();
 		if ( $form->show() ) {
