@@ -201,6 +201,14 @@ class CreateWikiJson {
 	 * allows extensions to modify the data before it is written to a file.
 	 */
 	private function generateDatabaseList() {
+		$databaseLists = [];
+		$this->hookRunner->onCreateWikiJsonGenerateDatabaseList( $databaseLists );
+
+		if ( !empty( $databaseLists ) ) {
+			$this->generateDatabasesJsonFile( $databaseLists );
+			return;
+		}
+
 		$allWikis = $this->dbr->select(
 			'cw_wikis',
 			[
@@ -243,8 +251,10 @@ class CreateWikiJson {
 			],
 		];
 
-		$this->hookRunner->onCreateWikiJsonGenerateDatabaseList( $databaseLists );
+		$this->generateDatabasesJsonFile( $databaseLists );
+	}
 
+	private function generateDatabasesJsonFile( array $databaseLists ) {
 		foreach ( $databaseLists as $name => $contents ) {
 			$contents = [ 'timestamp' => $this->databaseTimestamp ] + $contents;
 			$contents[$name] ??= 'combi';
@@ -253,10 +263,16 @@ class CreateWikiJson {
 
 			unset( $contents[$name] );
 
-			file_put_contents( "{$this->cacheDir}/{$name}.json.tmp", json_encode( $contents ), LOCK_EX );
+			$tmpFile = tempnam( '/tmp/', $name );
 
-			if ( file_exists( "{$this->cacheDir}/{$name}.json.tmp" ) ) {
-				rename( "{$this->cacheDir}/{$name}.json.tmp", "{$this->cacheDir}/{$name}.json" );
+			if ( $tmpFile ) {
+				if ( file_put_contents( $tmpFile, json_encode( $contents ) ) ) {
+					if ( !rename( $tmpFile, "{$this->cacheDir}/{$name}.json" ) ) {
+						unlink( $tmpFile );
+					}
+				} else {
+					unlink( $tmpFile );
+				}
 			}
 		}
 	}
@@ -276,8 +292,6 @@ class CreateWikiJson {
 	 *
 	 * The generated data is stored in a JSON file with the same name as the database of the wiki.
 	 * The method also triggers the CreateWikiJsonBuilder hook to allow extensions to add more data to the JSON file.
-	 *
-	 * @throws UnexpectedValueException If the wiki specified by $this->wiki cannot be found.
 	 */
 	private function generateWiki() {
 		$wikiObject = $this->dbr->selectRow(
@@ -326,10 +340,15 @@ class CreateWikiJson {
 
 		$this->hookRunner->onCreateWikiJsonBuilder( $this->wiki, $this->dbr, $jsonArray );
 
-		file_put_contents( "{$this->cacheDir}/{$this->wiki}.json.tmp", json_encode( $jsonArray ), LOCK_EX );
-
-		if ( file_exists( "{$this->cacheDir}/{$this->wiki}.json.tmp" ) ) {
-			rename( "{$this->cacheDir}/{$this->wiki}.json.tmp", "{$this->cacheDir}/{$this->wiki}.json" );
+		$tmpFile = tempnam( '/tmp/', $this->wiki );
+		if ( $tmpFile ) {
+			if ( file_put_contents( $tmpFile, json_encode( $jsonArray ) ) ) {
+				if ( !rename( $tmpFile, "{$this->cacheDir}/{$this->wiki}.json" ) ) {
+					unlink( $tmpFile );
+				}
+			} else {
+				unlink( $tmpFile );
+			}
 		}
 	}
 
