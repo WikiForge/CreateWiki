@@ -61,10 +61,11 @@ class Hooks implements
 	public function onSetupAfterCache() {
 		global $wgGroupPermissions;
 
-		$dbName = $this->config->get( 'DBname' );
-		if ( !file_exists( MW_CONFIG_FILE ) ) {
+		if ( defined( 'MW_UPDATER' ) ) {
 			return;
 		}
+
+		$dbName = $this->config->get( 'DBname' );
 
 		$cWJ = new CreateWikiJson( $dbName, $this->hookRunner );
 		$cWJ->update();
