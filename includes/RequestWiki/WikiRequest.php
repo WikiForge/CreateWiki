@@ -375,10 +375,6 @@ class WikiRequest {
 	 * @return boolean true subdomain is valid and accepted, false otherwise
 	 */
 	public function parseSubdomain( string $subdomain, string &$err = '' ) {
-		if ( isset( $alldata['submit-comment'] ) || ( isset( $alldata['submit-handle'] ) && $alldata['submission-action'] !== 'create' ) ) {
-			return true;
-		}
-
 		$subdomain = strtolower( $subdomain );
 		if ( strpos( $subdomain, $this->config->get( 'CreateWikiSubdomain' ) ) !== false ) {
 			$subdomain = str_replace( '.' . $this->config->get( 'CreateWikiSubdomain' ), '', $subdomain );
@@ -389,12 +385,12 @@ class WikiRequest {
 			'CreateWikiDisallowedSubdomains'
 		);
 
+		// Make the subdomain a dbname
 		$database = $subdomain . $this->config->get( 'CreateWikiDatabaseSuffix' );
 		if ( in_array( $database, $this->config->get( 'LocalDatabases' ) ) ) {
 			$err = 'subdomaintaken';
 
 			return false;
-		// Make the subdomain a dbname
 		} elseif ( !ctype_alnum( $subdomain ) ) {
 			$err = 'notalnum';
 
