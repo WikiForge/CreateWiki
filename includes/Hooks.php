@@ -62,6 +62,9 @@ class Hooks implements
 		global $wgGroupPermissions;
 
 		$dbName = $this->config->get( 'DBname' );
+		if ( !$dbName ) {
+			return;
+		}
 
 		$cWJ = new CreateWikiJson( $dbName, $this->hookRunner );
 		$cWJ->update();
