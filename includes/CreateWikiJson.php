@@ -170,6 +170,11 @@ class CreateWikiJson {
 	public function update() {
 		$changes = $this->newChanges();
 
+		if ( defined( 'MW_PHPUNIT_TEST' ) && function_exists( 'wfInitDBConnection' ) ) {
+			$this->dbr = wfInitDBConnection();
+			$this->dbr->selectDomain( 'wikidb' );
+		}
+
 		if ( $changes['databases'] ) {
 			$this->dbr ??= MediaWikiServices::getInstance()->getDBLoadBalancerFactory()
 				->getMainLB( $this->config->get( 'CreateWikiDatabase' ) )
