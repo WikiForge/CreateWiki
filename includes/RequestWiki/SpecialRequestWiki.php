@@ -234,7 +234,7 @@ class SpecialRequestWiki extends FormSpecialPage {
 				)
 			);
 
-			return $e;
+			return $e->getMessage();
 		}
 
 		$idlink = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink( Title::newFromText( 'Special:RequestWikiQueue/' . $requestID ), "#{$requestID}" );
