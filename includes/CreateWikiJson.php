@@ -170,11 +170,6 @@ class CreateWikiJson {
 	public function update() {
 		$changes = $this->newChanges();
 
-		if ( defined( 'MW_PHPUNIT_TEST' ) && function_exists( 'wfInitDBConnection' ) ) {
-			$this->dbr = wfInitDBConnection();
-			$this->dbr->selectDomain( 'wikidb' );
-		}
-
 		if ( $changes['databases'] ) {
 			$this->dbr ??= MediaWikiServices::getInstance()->getDBLoadBalancerFactory()
 				->getMainLB( $this->config->get( 'CreateWikiDatabase' ) )
@@ -299,13 +294,26 @@ class CreateWikiJson {
 	 * The method also triggers the CreateWikiJsonBuilder hook to allow extensions to add more data to the JSON file.
 	 */
 	private function generateWiki() {
-		$wikiObject = $this->dbr->selectRow(
-			'cw_wikis',
-			'*',
-			[
-				'wiki_dbname' => $this->wiki
-			]
-		);
+		if ( defined( 'MW_PHPUNIT_TEST' ) && function_exists( 'wfInitDBConnection' ) ) {
+			$db = wfInitDBConnection();
+			$db->selectDomain( 'wikidb' );
+			
+			$wikiObject = $db->selectRow(
+				'cw_wikis',
+				'*',
+				[
+					'wiki_dbname' => $this->wiki
+				]
+			);
+		} else {
+			$wikiObject = $this->dbr->selectRow(
+				'cw_wikis',
+				'*',
+				[
+					'wiki_dbname' => $this->wiki
+				]
+			);
+		}
 
 		if ( !$wikiObject ) {
 			throw new UnexpectedValueException( "Wiki '{$this->wiki}' can not be found." );
