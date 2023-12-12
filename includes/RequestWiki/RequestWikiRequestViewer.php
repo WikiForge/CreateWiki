@@ -478,7 +478,7 @@ class RequestWikiRequestViewer {
 				Html::element(
 					'p',
 					[],
-					wfMessage( 'requestwiki-edit-success' )->text()
+					wfMessage( 'requestwiki-edit-success' )->plain()
 				),
 				'mw-notify-success'
 			)
