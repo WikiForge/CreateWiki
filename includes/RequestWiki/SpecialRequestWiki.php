@@ -203,7 +203,7 @@ class SpecialRequestWiki extends FormSpecialPage {
 				);
 			}
 
-			return $err;
+			return false;
 		}
 
 		$request->description = $formData['reason'];
@@ -234,7 +234,7 @@ class SpecialRequestWiki extends FormSpecialPage {
 				)
 			);
 
-			return false;
+			return $e;
 		}
 
 		$idlink = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink( Title::newFromText( 'Special:RequestWikiQueue/' . $requestID ), "#{$requestID}" );
