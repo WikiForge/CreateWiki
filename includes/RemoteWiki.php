@@ -379,7 +379,7 @@ class RemoteWiki {
 	}
 
 	public function commit() {
-		if ( !empty( $this->changes ) ) {
+		if ( $this->changes ) {
 			if ( $this->newRows ) {
 				$this->dbw->update(
 					'cw_wikis',

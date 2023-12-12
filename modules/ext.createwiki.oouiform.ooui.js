@@ -21,24 +21,23 @@
 				mw.hook( 'htmlform.enhance' ).fire( panel.$element );
 				panel.$element.data( 'mw-section-infused', true );
 			}
-		// Add <hr> to divide between the wiki approval pane and the wiki request editing pane for WCs
-		var targetElement = document.getElementById('ooui-php-53');
 
-		if (targetElement) {
-		// Create a <br> element
-			var brElement = document.createElement('br');
+			// Add <hr> to divide between the wiki approval pane and the wiki request editing pane for WCs
+			var targetElement = document.getElementById( 'ooui-php-53' );
 
-			// Create an <hr> element
-			var hrElement = document.createElement('hr');
+			if ( targetElement ) {
+				// Create a <br> element
+				var brElement = document.createElement( 'br' );
 
-			// Insert the <hr> element after the target element
-			targetElement.parentNode.insertBefore(hrElement, targetElement.nextSibling);
+				// Create an <hr> element
+				var hrElement = document.createElement( 'hr' );
 
-			// Insert the <br> element after the target element
-			targetElement.parentNode.insertBefore(brElement, targetElement.nextSibling);
-		} else {
-  			console.error("Element with ID 'ooui-php-53' not found.");
-		}
+				// Insert the <hr> element after the target element
+				targetElement.parentNode.insertBefore( hrElement, targetElement.nextSibling );
+
+				// Insert the <br> element after the target element
+				targetElement.parentNode.insertBefore( brElement, targetElement.nextSibling );
+			}
 		}
 
 		function onTabPanelSet( panel ) {

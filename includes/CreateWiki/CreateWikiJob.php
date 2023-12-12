@@ -3,12 +3,14 @@
 namespace WikiForge\CreateWiki\CreateWiki;
 
 use Exception;
+use ExtensionRegistry;
 use Job;
 use MediaWiki\MediaWikiServices;
 use Title;
 use User;
 use WikiForge\CreateWiki\RequestWiki\WikiRequest;
 use WikiForge\CreateWiki\WikiManager;
+use WikiForge\ManageWiki\Helpers\ManageWikiSettings;
 
 class CreateWikiJob extends Job {
 	public function __construct( Title $title, array $params ) {
@@ -40,8 +42,14 @@ class CreateWikiJob extends Job {
 				"[[Special:RequestWikiQueue/{$this->params['id']}|Requested]]"
 			);
 
-			if ( ExtensionRegistry::getInstance()->isLoaded( 'WikiDiscover' ) && $config->get( 'WikiDiscoverUseDescriptions' ) && $config->get( 'RequestWikiUseDescriptions' ) && isset( $this->params['description'] ) ) {
-				$mwSettings = new \WikiForge\ManageWiki\Helpers\ManageWikiSettings( $this->params['dbname'] );
+			if (
+				ExtensionRegistry::getInstance()->isLoaded( 'ManageWiki' ) &&
+				ExtensionRegistry::getInstance()->isLoaded( 'WikiDiscover' ) &&
+				$config->get( 'WikiDiscoverUseDescriptions' ) &&
+				$config->get( 'RequestWikiUseDescriptions' ) &&
+				isset( $this->params['description'] )
+			) {
+				$mwSettings = new ManageWikiSettings( $this->params['dbname'] );
 
 				$description = $mwSettings->list()['wgWikiDiscoverDescription'] ?? '';
 

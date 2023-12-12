@@ -13,6 +13,7 @@ class SpecialCreateWiki extends FormSpecialPage {
 
 	/** @var Config */
 	private $config;
+
 	/** @var CreateWikiHookRunner */
 	private $hookRunner;
 
@@ -126,7 +127,7 @@ class SpecialCreateWiki extends FormSpecialPage {
 		if ( $check ) {
 			$this->getOutput()->addHTML(
 				Html::warningBox(
-					Html::element(
+					Html::rawElement(
 						'p',
 						[],
 						$check

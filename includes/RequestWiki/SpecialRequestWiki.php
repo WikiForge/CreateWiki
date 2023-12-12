@@ -18,6 +18,7 @@ class SpecialRequestWiki extends FormSpecialPage {
 
 	/** @var Config */
 	private $config;
+
 	/** @var CreateWikiHookRunner */
 	private $hookRunner;
 
@@ -192,7 +193,7 @@ class SpecialRequestWiki extends FormSpecialPage {
 			if ( $err !== '' ) {
 				$out->addHTML(
 					Html::warningBox(
-						Html::element(
+						Html::rawElement(
 							'p',
 							[],
 							$this->msg( 'createwiki-error-' . $err )->parse()
