@@ -62,7 +62,7 @@ class Hooks implements
 		global $wgGroupPermissions;
 
 		$dbName = $this->config->get( 'DBname' );
-		if ( !$dbName ) {
+		if ( !file_exists( MW_CONFIG_FILE ) ) {
 			return;
 		}
 
