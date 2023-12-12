@@ -177,7 +177,7 @@ class RequestWikiRequestViewer {
 						'type' => 'check',
 						'label-message' => 'revdelete-legend',
 						'options' => array_flip( $visibilityOptions ),
-						'default' => ($request->visibility != 0) ? 1 : 0,
+						'default' => ( $request->visibility != 0 ) ? 1 : 0,
 						'cssclass' => 'createwiki-infuse',
 						'section' => 'review',
 					],

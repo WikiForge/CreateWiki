@@ -80,7 +80,7 @@ class WikiRequest {
 			$this->migrationtype = $dbRequest->cw_migrationtype;
 			$this->migrationdetails = $dbRequest->cw_migrationdetails;
 			$this->publicdescription = $dbRequest->cw_publicdescription;
-			
+
 			$newDesc = explode( "\n", $dbRequest->cw_comment, 2 );
 			$purposeCheck = explode( ':', $newDesc[0], 2 );
 
@@ -335,7 +335,7 @@ class WikiRequest {
 			'cw_migrationlocation' => $this->migrationlocation,
 			'cw_migrationtype' => $this->migrationtype,
 			'cw_migrationdetails' => $this->migrationdetails,
-			'cw_publicdescription' =>  $this->publicdescription,
+			'cw_publicdescription' => $this->publicdescription,
 		];
 
 		$this->dbw->upsert(
