@@ -61,7 +61,7 @@ class Hooks implements
 	public function onSetupAfterCache() {
 		global $wgGroupPermissions;
 
-		if ( defined( 'MW_UPDATER' ) ) {
+		if ( defined( 'MW_UPDATER' ) || defined( 'MEDIAWIKI_INSTALL' ) ) {
 			return;
 		}
 
