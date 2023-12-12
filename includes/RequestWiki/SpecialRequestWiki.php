@@ -203,7 +203,7 @@ class SpecialRequestWiki extends FormSpecialPage {
 				);
 			}
 
-			return false;
+			return $err;
 		}
 
 		$request->description = $formData['reason'];
